@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,Code Review," />
 
 
 
@@ -94,13 +94,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="markhuyong&#39;s garden">
-<meta property="og:url" content="http://markhuyong.github.io/archives/2017/index.html">
+<meta name="description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
+<meta name="keywords" content="Java,Code Review">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding sun.misc.Unsafe">
+<meta property="og:url" content="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/index.html">
 <meta property="og:site_name" content="markhuyong&#39;s garden">
+<meta property="og:description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-08-24T10:01:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="markhuyong&#39;s garden">
+<meta name="twitter:title" content="Understanding sun.misc.Unsafe">
+<meta name="twitter:description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://markhuyong.github.io/archives/2017/"/>
+  <link rel="canonical" href="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/"/>
 
 
 
 
 
-  <title>Archive | markhuyong's garden</title>
+  <title>Understanding sun.misc.Unsafe | markhuyong's garden</title>
   
 
 
@@ -154,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,222 +253,159 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Understanding sun.misc.Unsafe</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T17:59:26+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 5 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/24/Understanding-sun-misc-Unsafe/" itemprop="url">
-              
-                <span itemprop="name">Understanding sun.misc.Unsafe</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-24T17:59:26+08:00"
-              content="2017-08-24" >
-          08-24
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/converting-html-to-text-markdown/" itemprop="url">
-              
-                <span itemprop="name">Converting HTML to Text or Markdown</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T19:02:14+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/hexo-cli/" itemprop="url">
-              
-                <span itemprop="name">hexo cheatsheet</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T19:02:14+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="Understanding-guide"><a href="#Understanding-guide" class="headerlink" title="Understanding guide"></a>Understanding guide</h2><ul>
+<li><a href="http://blog.dripstat.com/removal-of-sun-misc-unsafe-a-disaster-in-the-making/" target="_blank" rel="external">Oracle’s proposed removal of sun.misc.Unsafe in Java 9</a></li>
+<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank" rel="external">Java Magic. Part 4: sun.misc.Unsafe</a></li>
+<li><a href="https://dzone.com/articles/understanding-sunmiscunsafe" target="_blank" rel="external">Understanding sun.misc.Unsafe - DZone Java</a></li>
+</ul>
+<h2 id="JDK-code"><a href="#JDK-code" class="headerlink" title="JDK code"></a>JDK code</h2><ul>
+<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.cpp" target="_blank" rel="external">openjdk/unsafe.cpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.hpp" target="_blank" rel="external">openjdk/unsafe.hpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="https://github.com/dmlloyd/openjdk/tree/jdk9/jdk9/hotspot/test/runtime/Unsafe" target="_blank" rel="external">openjdk/hotspot/test/runtime/Unsafe at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/sun/misc/Unsafe.java#Unsafe" target="_blank" rel="external">GC: Unsafe - sun.misc.Unsafe (.java) - GrepCode Class Source</a></li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T18:54:45+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/linux-commands/" itemprop="url">
-              
-                <span itemprop="name">Linux Commands Cheat Sheet</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T18:30:11+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Code-Review/" rel="tag"># Code Review</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/converting-html-to-text-markdown/" rel="next" title="Converting HTML to Text or Markdown">
+                <i class="fa fa-chevron-left"></i> Converting HTML to Text or Markdown
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -471,6 +413,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -491,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -554,6 +509,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-guide"><span class="nav-number">1.</span> <span class="nav-text">Understanding guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK-code"><span class="nav-number">2.</span> <span class="nav-text">JDK code</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -673,11 +644,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   

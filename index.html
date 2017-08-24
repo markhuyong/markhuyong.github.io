@@ -264,6 +264,584 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/24/Understanding-sun-misc-Unsafe/" itemprop="url">Understanding sun.misc.Unsafe</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T17:59:26+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Understanding-guide"><a href="#Understanding-guide" class="headerlink" title="Understanding guide"></a>Understanding guide</h2><ul>
+<li><a href="http://blog.dripstat.com/removal-of-sun-misc-unsafe-a-disaster-in-the-making/" target="_blank" rel="external">Oracle’s proposed removal of sun.misc.Unsafe in Java 9</a></li>
+<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank" rel="external">Java Magic. Part 4: sun.misc.Unsafe</a></li>
+<li><a href="https://dzone.com/articles/understanding-sunmiscunsafe" target="_blank" rel="external">Understanding sun.misc.Unsafe - DZone Java</a></li>
+</ul>
+<h2 id="JDK-code"><a href="#JDK-code" class="headerlink" title="JDK code"></a>JDK code</h2><ul>
+<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.cpp" target="_blank" rel="external">openjdk/unsafe.cpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.hpp" target="_blank" rel="external">openjdk/unsafe.hpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="https://github.com/dmlloyd/openjdk/tree/jdk9/jdk9/hotspot/test/runtime/Unsafe" target="_blank" rel="external">openjdk/hotspot/test/runtime/Unsafe at jdk9/jdk9 · dmlloyd/openjdk</a></li>
+<li><a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/sun/misc/Unsafe.java#Unsafe" target="_blank" rel="external">GC: Unsafe - sun.misc.Unsafe (.java) - GrepCode Class Source</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/converting-html-to-text-markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/converting-html-to-text-markdown/" itemprop="url">Converting HTML to Text or Markdown</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T19:02:14+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.cantoni.org/2013/01/19/converting-html-to-text-markdown" title="Permalink to Converting HTML to Text or Markdown" target="_blank" rel="external">original link</a></p>
+<p>I’m working on a documentation project where I might need to convert<br>some existing HTML pages back into text or Markdown format for the new<br>system. Rather than manually editing the HTML source, I’m testing with a<br>couple different ways to script it automatically. In the examples below,<br>I’m using a documentation page for our GoToMeeting API method <a href="https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings" target="_blank" rel="external">Get<br>Meetings</a>.</p>
+<h2 id="Lynx"><a href="#Lynx" class="headerlink" title="Lynx"></a>Lynx</h2><p><a href="http://lynx.isc.org/" title="Lynx Text Web Browser" target="_blank" rel="external">Lynx</a> is an open-source<br>text web browser that is usually present on Linux machines and can be<br>installed for Mac and Windows. I’ve used it in the past to see how web<br>pages will appear to search engines or for <a href="http://chronicle.com/blogs/profhacker/using-lynx-to-test-modern-websites-for-accessibility/31731" title="Using Lynx to Test Modern Web Sites for Accessibility" target="_blank" rel="external">accessibility<br>testing</a>.<br>In both cases, you can quickly tell whether your text is sufficiently<br>communicating your content.</p>
+<p>For the case of saving web pages in text format, Lynx also has a<br>command-line option “-dump”:</p>
+<pre><code>$ lynx -dump http://www.whatismyip.com/ &gt; example.txt
+</code></pre><p>In my test case I couldn’t convince Lynx to fetch an SSL page, so I<br>download it with Curl and pipe it into Lynx:</p>
+<pre><code>$ curl --silent https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings | lynx -dump -stdin &gt; lynx.txt
+</code></pre><p>Here’s a sample section of the output:</p>
+<pre><code>URL
+https://api.citrixonline.com/G2M/rest/meetings
+Method
+GET
+Response Type
+JSON
+Parameters
+scheduled A string &quot;true&quot; to get all future meetings.
+history A string &quot;true&quot; to get past meetings within date range.
+startDate If history=true, required start of date range, in ISO8601 UTC
+format.
+endDate If history=true, required end of date range, in ISO8601 UTC
+format.
+</code></pre><h2 id="Pandoc"><a href="#Pandoc" class="headerlink" title="Pandoc"></a>Pandoc</h2><p><a href="http://johnmacfarlane.net/pandoc/" title="Pandoc - Universal Document Converter" target="_blank" rel="external">Pandoc</a><br>is an open-source “universal document converter” which understands (and<br>can convert between) about two dozen different formats. It’s well suited<br>for writing a document in a primary source, then converting to other<br>formats for different publishing options.</p>
+<p>The option we’ll use here is Pandoc’s ability to convert from HTML to<br>Markdown, for example:</p>
+<pre><code>$ pandoc -s -r html http://www.whatismyip.com/ -o pandoc.md
+</code></pre><p>For my page, I use the same trick as above because Pandoc can’t connect<br>to SSL directly:</p>
+<pre><code>$ curl --silent https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings | pandoc -s -r html -o pandoc.md
+</code></pre><p>And here’s the sample output of the same section as above:</p>
+<pre><code>### URL
+https://api.citrixonline.com/G2M/rest/meetings
+### Method
+GET
+### Response Type
+JSON
+### Parameters
+**scheduled** A string &quot;true&quot; to get all future meetings.
+**history** A string &quot;true&quot; to get past meetings within date range.
+**startDate** If history=true, required start of date range, in ISO8601
+UTC format.
+**endDate** If history=true, required end of date range, in ISO8601 UTC
+format.
+</code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Both of these options do a pretty decent job of converting HTML into<br>text or Markdown format. Pandoc seems slightly better in terms of<br>getting to Markdown format, but I would need to run some more samples to<br>see how much manual editing would be needed after.</p>
+<p>I’m also going to play a bit more with Aaron Schwartz’s<br><a href="https://github.com/aaronsw/html2text" target="_blank" rel="external">Html2Text</a>. In my quick test, it<br>appeared to have a problem with malformed HTML so I need to do some<br>further testing with it.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/hexo-cli/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/hexo-cli/" itemprop="url">hexo cheatsheet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T19:02:14+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Cheatsheet"><a href="#Cheatsheet" class="headerlink" title="Cheatsheet"></a>Cheatsheet</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g <span class="comment">#install</span></div><div class="line">npm update hexo -g <span class="comment">#update</span></div><div class="line">hexo init <span class="comment">#initialize</span></div></pre></td></tr></table></figure>
+<h3 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">hexo n <span class="comment">#hexo new</span></div><div class="line">hexo p <span class="comment">#hexo publish</span></div><div class="line">hexo g <span class="comment">#hexo generate</span></div><div class="line">hexo s <span class="comment">#hexo server</span></div><div class="line">hexo d <span class="comment">#hexo deploy</span></div><div class="line"></div><div class="line">hexo s -g <span class="comment">#hexo server with generator</span></div><div class="line">hexo s -g --draft <span class="comment">#hexo server with generator and show drafts</span></div></pre></td></tr></table></figure>
+<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo server <span class="comment">#Hexo will watch files, don't need to restart server </span></div><div class="line">hexo server -s <span class="comment">#Static mode, serve public folder and disable file watching.</span></div><div class="line">hexo server -p 5000 <span class="comment">#change port</span></div><div class="line">hexo server -i 192.168.1.1 <span class="comment">#custom ip</span></div><div class="line">hexo clean <span class="comment">#Cleans the cache file (db.json) and generated files (public).</span></div><div class="line">hexo g <span class="comment">#Generates static files.</span></div><div class="line">hexo d <span class="comment">#Deploys your website.</span></div></pre></td></tr></table></figure>
+<h3 id="Watching"><a href="#Watching" class="headerlink" title="Watching"></a>Watching</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo generate --watch <span class="comment">#Watch file changes</span></div></pre></td></tr></table></figure>
+<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div><div class="line"></div><div class="line">hexo deploy -g</div><div class="line">hexo server -g</div></pre></td></tr></table></figure>
+<h3 id="Posts"><a href="#Posts" class="headerlink" title="Posts"></a>Posts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"postName"</span> <span class="comment"># new post _posts/postName.md</span></div><div class="line">hexo new page <span class="string">"pageName"</span> </div><div class="line">hexo generate </div><div class="line">hexo server </div><div class="line">hexo deploy <span class="comment">#.deploy deploy to GitHub repo</span></div><div class="line">hexo new [layout] &lt;title&gt;</div><div class="line">hexo new photo <span class="string">"My Gallery"</span></div><div class="line">hexo new <span class="string">"Hello World"</span> --lang tw</div><div class="line"></div><div class="line">hexo new draft <span class="string">"New Draft"</span> <span class="comment"># New-Draft.md</span></div><div class="line">hexo publish <span class="string">"New Draft"</span> <span class="comment"># copy New-Draft.md from _drafts to _posts</span></div></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Command line reference: <a href="https://hexo.io/docs/commands.html" target="_blank" rel="external">Commands | Hexo</a></p>
+<p>Installation with github: <a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="external">How to use Hexo and deploy to GitHub Pages</a></p>
+<p>Next theme: <a href="http://zhiho.github.io/2015/09/29/hexo-next/" target="_blank" rel="external">Hexo搭建GitHub博客（三）- NexT主题配置使用 | Zhiho’s Blog</a></p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T18:54:45+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/linux-commands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -397,326 +975,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/hexo-cli/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="markhuyong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="markhuyong's garden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/hexo-cli/" itemprop="url">hexo cheatsheet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T18:09:47+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Cheatsheet"><a href="#Cheatsheet" class="headerlink" title="Cheatsheet"></a>Cheatsheet</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g <span class="comment">#install</span></div><div class="line">npm update hexo -g <span class="comment">#update</span></div><div class="line">hexo init <span class="comment">#initialize</span></div></pre></td></tr></table></figure>
-<h3 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">hexo n <span class="comment">#hexo new</span></div><div class="line">hexo p <span class="comment">#hexo publish</span></div><div class="line">hexo g <span class="comment">#hexo generate</span></div><div class="line">hexo s <span class="comment">#hexo server</span></div><div class="line">hexo d <span class="comment">#hexo deploy</span></div><div class="line"></div><div class="line">hexo s -g <span class="comment">#hexo server with generator</span></div><div class="line">hexo s -g --draft <span class="comment">#hexo server with generator and show drafts</span></div></pre></td></tr></table></figure>
-<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo server <span class="comment">#Hexo will watch files, don't need to restart server </span></div><div class="line">hexo server -s <span class="comment">#Static mode, serve public folder and disable file watching.</span></div><div class="line">hexo server -p 5000 <span class="comment">#change port</span></div><div class="line">hexo server -i 192.168.1.1 <span class="comment">#custom ip</span></div><div class="line">hexo clean <span class="comment">#Cleans the cache file (db.json) and generated files (public).</span></div><div class="line">hexo g <span class="comment">#Generates static files.</span></div><div class="line">hexo d <span class="comment">#Deploys your website.</span></div></pre></td></tr></table></figure>
-<h3 id="Watching"><a href="#Watching" class="headerlink" title="Watching"></a>Watching</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo generate --watch <span class="comment">#Watch file changes</span></div></pre></td></tr></table></figure>
-<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div><div class="line"></div><div class="line">hexo deploy -g</div><div class="line">hexo server -g</div></pre></td></tr></table></figure>
-<h3 id="Posts"><a href="#Posts" class="headerlink" title="Posts"></a>Posts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"postName"</span> <span class="comment"># new post _posts/postName.md</span></div><div class="line">hexo new page <span class="string">"pageName"</span> </div><div class="line">hexo generate </div><div class="line">hexo server </div><div class="line">hexo deploy <span class="comment">#.deploy deploy to GitHub repo</span></div><div class="line">hexo new [layout] &lt;title&gt;</div><div class="line">hexo new photo <span class="string">"My Gallery"</span></div><div class="line">hexo new <span class="string">"Hello World"</span> --lang tw</div><div class="line"></div><div class="line">hexo new draft <span class="string">"New Draft"</span> <span class="comment"># New-Draft.md</span></div><div class="line">hexo publish <span class="string">"New Draft"</span> <span class="comment"># copy New-Draft.md from _drafts to _posts</span></div></pre></td></tr></table></figure>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Command line reference: <a href="https://hexo.io/docs/commands.html" target="_blank" rel="external">Commands | Hexo</a></p>
-<p>Installation with github: <a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="external">How to use Hexo and deploy to GitHub Pages</a></p>
-<p>Next theme: <a href="http://zhiho.github.io/2015/09/29/hexo-next/" target="_blank" rel="external">Hexo搭建GitHub博客（三）- NexT主题配置使用 | Zhiho’s Blog</a></p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/converting-html-to-text-markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="markhuyong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="markhuyong's garden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/converting-html-to-text-markdown/" itemprop="url">Converting HTML to Text or Markdown</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T14:31:10+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://www.cantoni.org/2013/01/19/converting-html-to-text-markdown" title="Permalink to Converting HTML to Text or Markdown" target="_blank" rel="external">original link</a></p>
-<p>I’m working on a documentation project where I might need to convert<br>some existing HTML pages back into text or Markdown format for the new<br>system. Rather than manually editing the HTML source, I’m testing with a<br>couple different ways to script it automatically. In the examples below,<br>I’m using a documentation page for our GoToMeeting API method <a href="https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings" target="_blank" rel="external">Get<br>Meetings</a>.</p>
-<h2 id="Lynx"><a href="#Lynx" class="headerlink" title="Lynx"></a>Lynx</h2><p><a href="http://lynx.isc.org/" title="Lynx Text Web Browser" target="_blank" rel="external">Lynx</a> is an open-source<br>text web browser that is usually present on Linux machines and can be<br>installed for Mac and Windows. I’ve used it in the past to see how web<br>pages will appear to search engines or for <a href="http://chronicle.com/blogs/profhacker/using-lynx-to-test-modern-websites-for-accessibility/31731" title="Using Lynx to Test Modern Web Sites for Accessibility" target="_blank" rel="external">accessibility<br>testing</a>.<br>In both cases, you can quickly tell whether your text is sufficiently<br>communicating your content.</p>
-<p>For the case of saving web pages in text format, Lynx also has a<br>command-line option “-dump”:</p>
-<pre><code>$ lynx -dump http://www.whatismyip.com/ &gt; example.txt
-</code></pre><p>In my test case I couldn’t convince Lynx to fetch an SSL page, so I<br>download it with Curl and pipe it into Lynx:</p>
-<pre><code>$ curl --silent https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings | lynx -dump -stdin &gt; lynx.txt
-</code></pre><p>Here’s a sample section of the output:</p>
-<pre><code>URL
-https://api.citrixonline.com/G2M/rest/meetings
-Method
-GET
-Response Type
-JSON
-Parameters
-scheduled A string &quot;true&quot; to get all future meetings.
-history A string &quot;true&quot; to get past meetings within date range.
-startDate If history=true, required start of date range, in ISO8601 UTC
-format.
-endDate If history=true, required end of date range, in ISO8601 UTC
-format.
-</code></pre><h2 id="Pandoc"><a href="#Pandoc" class="headerlink" title="Pandoc"></a>Pandoc</h2><p><a href="http://johnmacfarlane.net/pandoc/" title="Pandoc - Universal Document Converter" target="_blank" rel="external">Pandoc</a><br>is an open-source “universal document converter” which understands (and<br>can convert between) about two dozen different formats. It’s well suited<br>for writing a document in a primary source, then converting to other<br>formats for different publishing options.</p>
-<p>The option we’ll use here is Pandoc’s ability to convert from HTML to<br>Markdown, for example:</p>
-<pre><code>$ pandoc -s -r html http://www.whatismyip.com/ -o pandoc.md
-</code></pre><p>For my page, I use the same trick as above because Pandoc can’t connect<br>to SSL directly:</p>
-<pre><code>$ curl --silent https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-meetings | pandoc -s -r html -o pandoc.md
-</code></pre><p>And here’s the sample output of the same section as above:</p>
-<pre><code>### URL
-https://api.citrixonline.com/G2M/rest/meetings
-### Method
-GET
-### Response Type
-JSON
-### Parameters
-**scheduled** A string &quot;true&quot; to get all future meetings.
-**history** A string &quot;true&quot; to get past meetings within date range.
-**startDate** If history=true, required start of date range, in ISO8601
-UTC format.
-**endDate** If history=true, required end of date range, in ISO8601 UTC
-format.
-</code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Both of these options do a pretty decent job of converting HTML into<br>text or Markdown format. Pandoc seems slightly better in terms of<br>getting to Markdown format, but I would need to run some more samples to<br>see how much manual editing would be needed after.</p>
-<p>I’m also going to play a bit more with Aaron Schwartz’s<br><a href="https://github.com/aaronsw/html2text" target="_blank" rel="external">Html2Text</a>. In my quick test, it<br>appeared to have a problem with malformed HTML so I need to do some<br>further testing with it.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -763,7 +1021,7 @@ format.
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -785,7 +1043,7 @@ format.
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
