@@ -295,7 +295,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T12:43:43+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T12:49:33+08:00">
                 2018-04-02
               </time>
             
@@ -345,7 +345,7 @@
 </li>
 <li><p><a href="http://www.cnblogs.com/softidea/p/5973591.html" target="_blank" rel="noopener">Redisson使用起来很方便，但是需要redis环境支持eval命令 - 沧海一滴 - 博客园</a></p>
 </li>
-<li><a href="http://www.cnblogs.com/softidea/p/5973591.html" target="_blank" rel="noopener">Redisson使用起来很方便，但是需要redis环境支持eval命令 - 沧海一滴 - 博客园</a></li>
+<li><a href="http://blog.jobbole.com/99751/" target="_blank" rel="noopener">基于Redis实现分布式锁，Redisson使用及源码分析 - 文章 - 伯乐在线</a></li>
 </ul>
 </li>
 </ul>
@@ -527,6 +527,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/hexo-cli/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/hexo-cli/" itemprop="url">hexo cheatsheet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T19:02:14+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Cheatsheet"><a href="#Cheatsheet" class="headerlink" title="Cheatsheet"></a>Cheatsheet</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g <span class="comment">#install</span></span><br><span class="line">npm update hexo -g <span class="comment">#update</span></span><br><span class="line">hexo init <span class="comment">#initialize</span></span><br></pre></td></tr></table></figure>
+<h3 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="comment">#hexo new</span></span><br><span class="line">hexo p <span class="comment">#hexo publish</span></span><br><span class="line">hexo g <span class="comment">#hexo generate</span></span><br><span class="line">hexo s <span class="comment">#hexo server</span></span><br><span class="line">hexo d <span class="comment">#hexo deploy</span></span><br><span class="line"></span><br><span class="line">hexo s -g <span class="comment">#hexo server with generator</span></span><br><span class="line">hexo s -g --draft <span class="comment">#hexo server with generator and show drafts</span></span><br></pre></td></tr></table></figure>
+<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo server <span class="comment">#Hexo will watch files, don't need to restart server </span></span><br><span class="line">hexo server -s <span class="comment">#Static mode, serve public folder and disable file watching.</span></span><br><span class="line">hexo server -p 5000 <span class="comment">#change port</span></span><br><span class="line">hexo server -i 192.168.1.1 <span class="comment">#custom ip</span></span><br><span class="line">hexo clean <span class="comment">#Cleans the cache file (db.json) and generated files (public).</span></span><br><span class="line">hexo g <span class="comment">#Generates static files.</span></span><br><span class="line">hexo d <span class="comment">#Deploys your website.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Watching"><a href="#Watching" class="headerlink" title="Watching"></a>Watching</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo generate --watch <span class="comment">#Watch file changes</span></span><br></pre></td></tr></table></figure>
+<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line">hexo deploy --generate</span><br><span class="line"></span><br><span class="line">hexo deploy -g</span><br><span class="line">hexo server -g</span><br></pre></td></tr></table></figure>
+<h3 id="Posts"><a href="#Posts" class="headerlink" title="Posts"></a>Posts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"postName"</span> <span class="comment"># new post _posts/postName.md</span></span><br><span class="line">hexo new page <span class="string">"pageName"</span> </span><br><span class="line">hexo generate </span><br><span class="line">hexo server </span><br><span class="line">hexo deploy <span class="comment">#.deploy deploy to GitHub repo</span></span><br><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">hexo new photo <span class="string">"My Gallery"</span></span><br><span class="line">hexo new <span class="string">"Hello World"</span> --lang tw</span><br><span class="line"></span><br><span class="line">hexo new draft <span class="string">"New Draft"</span> <span class="comment"># New-Draft.md</span></span><br><span class="line">hexo publish <span class="string">"New Draft"</span> <span class="comment"># copy New-Draft.md from _drafts to _posts</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Command line reference: <a href="https://hexo.io/docs/commands.html" target="_blank" rel="noopener">Commands | Hexo</a></p>
+<p>Installation with github: <a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="noopener">How to use Hexo and deploy to GitHub Pages</a></p>
+<p>Next theme: <a href="http://zhiho.github.io/2015/09/29/hexo-next/" target="_blank" rel="noopener">Hexo搭建GitHub博客（三）- NexT主题配置使用 | Zhiho’s Blog</a></p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/converting-html-to-text-markdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,165 +799,6 @@ UTC format.
 format.
 </code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Both of these options do a pretty decent job of converting HTML into<br>text or Markdown format. Pandoc seems slightly better in terms of<br>getting to Markdown format, but I would need to run some more samples to<br>see how much manual editing would be needed after.</p>
 <p>I’m also going to play a bit more with Aaron Schwartz’s<br><a href="https://github.com/aaronsw/html2text" target="_blank" rel="noopener">Html2Text</a>. In my quick test, it<br>appeared to have a problem with malformed HTML so I need to do some<br>further testing with it.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/10/hexo-cli/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="markhuyong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="markhuyong's garden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/hexo-cli/" itemprop="url">hexo cheatsheet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T19:02:14+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Cheatsheet"><a href="#Cheatsheet" class="headerlink" title="Cheatsheet"></a>Cheatsheet</h2><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g <span class="comment">#install</span></span><br><span class="line">npm update hexo -g <span class="comment">#update</span></span><br><span class="line">hexo init <span class="comment">#initialize</span></span><br></pre></td></tr></table></figure>
-<h3 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="comment">#hexo new</span></span><br><span class="line">hexo p <span class="comment">#hexo publish</span></span><br><span class="line">hexo g <span class="comment">#hexo generate</span></span><br><span class="line">hexo s <span class="comment">#hexo server</span></span><br><span class="line">hexo d <span class="comment">#hexo deploy</span></span><br><span class="line"></span><br><span class="line">hexo s -g <span class="comment">#hexo server with generator</span></span><br><span class="line">hexo s -g --draft <span class="comment">#hexo server with generator and show drafts</span></span><br></pre></td></tr></table></figure>
-<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo server <span class="comment">#Hexo will watch files, don't need to restart server </span></span><br><span class="line">hexo server -s <span class="comment">#Static mode, serve public folder and disable file watching.</span></span><br><span class="line">hexo server -p 5000 <span class="comment">#change port</span></span><br><span class="line">hexo server -i 192.168.1.1 <span class="comment">#custom ip</span></span><br><span class="line">hexo clean <span class="comment">#Cleans the cache file (db.json) and generated files (public).</span></span><br><span class="line">hexo g <span class="comment">#Generates static files.</span></span><br><span class="line">hexo d <span class="comment">#Deploys your website.</span></span><br></pre></td></tr></table></figure>
-<h3 id="Watching"><a href="#Watching" class="headerlink" title="Watching"></a>Watching</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo generate --watch <span class="comment">#Watch file changes</span></span><br></pre></td></tr></table></figure>
-<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line">hexo deploy --generate</span><br><span class="line"></span><br><span class="line">hexo deploy -g</span><br><span class="line">hexo server -g</span><br></pre></td></tr></table></figure>
-<h3 id="Posts"><a href="#Posts" class="headerlink" title="Posts"></a>Posts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"postName"</span> <span class="comment"># new post _posts/postName.md</span></span><br><span class="line">hexo new page <span class="string">"pageName"</span> </span><br><span class="line">hexo generate </span><br><span class="line">hexo server </span><br><span class="line">hexo deploy <span class="comment">#.deploy deploy to GitHub repo</span></span><br><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line">hexo new photo <span class="string">"My Gallery"</span></span><br><span class="line">hexo new <span class="string">"Hello World"</span> --lang tw</span><br><span class="line"></span><br><span class="line">hexo new draft <span class="string">"New Draft"</span> <span class="comment"># New-Draft.md</span></span><br><span class="line">hexo publish <span class="string">"New Draft"</span> <span class="comment"># copy New-Draft.md from _drafts to _posts</span></span><br></pre></td></tr></table></figure>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Command line reference: <a href="https://hexo.io/docs/commands.html" target="_blank" rel="noopener">Commands | Hexo</a></p>
-<p>Installation with github: <a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="noopener">How to use Hexo and deploy to GitHub Pages</a></p>
-<p>Next theme: <a href="http://zhiho.github.io/2015/09/29/hexo-next/" target="_blank" rel="noopener">Hexo搭建GitHub博客（三）- NexT主题配置使用 | Zhiho’s Blog</a></p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
