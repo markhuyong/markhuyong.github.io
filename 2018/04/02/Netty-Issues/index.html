@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,Code Review," />
+  <meta name="keywords" content="netty,Java,bug," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
-<meta name="keywords" content="Java,Code Review">
+<meta name="description" content="too Many duplicated TCP links1234567891011121314151617root@production-watchdog:~# netstat -an|grep 65003| sort -n | uniq -c      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:11547   ESTABL">
+<meta name="keywords" content="netty,Java,bug">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Understanding sun.misc.Unsafe">
-<meta property="og:url" content="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/index.html">
+<meta property="og:title" content="Netty Issues">
+<meta property="og:url" content="http://markhuyong.github.io/2018/04/02/Netty-Issues/index.html">
 <meta property="og:site_name" content="markhuyong&#39;s garden">
-<meta property="og:description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
+<meta property="og:description" content="too Many duplicated TCP links1234567891011121314151617root@production-watchdog:~# netstat -an|grep 65003| sort -n | uniq -c      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:11547   ESTABL">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-08-24T10:01:09.000Z">
+<meta property="og:updated_time" content="2018-04-02T06:24:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Understanding sun.misc.Unsafe">
-<meta name="twitter:description" content="Understanding guide Oracle’s proposed removal of sun.misc.Unsafe in Java 9 Java Magic. Part 4: sun.misc.Unsafe Understanding sun.misc.Unsafe - DZone Java  JDK code openjdk/unsafe.cpp at jdk9/jdk9 · dm">
+<meta name="twitter:title" content="Netty Issues">
+<meta name="twitter:description" content="too Many duplicated TCP links1234567891011121314151617root@production-watchdog:~# netstat -an|grep 65003| sort -n | uniq -c      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:11547   ESTABL">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/"/>
+  <link rel="canonical" href="http://markhuyong.github.io/2018/04/02/Netty-Issues/"/>
 
 
 
 
 
-  <title>Understanding sun.misc.Unsafe | markhuyong's garden</title>
+  <title>Netty Issues | markhuyong's garden</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2017/08/24/Understanding-sun-misc-Unsafe/">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/02/Netty-Issues/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="markhuyong">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Understanding sun.misc.Unsafe</h1>
+          <h1 class="post-title" itemprop="name headline">Netty Issues</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T17:59:26+08:00">
-                2017-08-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T14:05:36+08:00">
+                2018-04-02
               </time>
             
 
@@ -306,6 +306,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -334,16 +356,10 @@
       
 
       
-        <h2 id="Understanding-guide"><a href="#Understanding-guide" class="headerlink" title="Understanding guide"></a>Understanding guide</h2><ul>
-<li><a href="http://blog.dripstat.com/removal-of-sun-misc-unsafe-a-disaster-in-the-making/" target="_blank" rel="noopener">Oracle’s proposed removal of sun.misc.Unsafe in Java 9</a></li>
-<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank" rel="noopener">Java Magic. Part 4: sun.misc.Unsafe</a></li>
-<li><a href="https://dzone.com/articles/understanding-sunmiscunsafe" target="_blank" rel="noopener">Understanding sun.misc.Unsafe - DZone Java</a></li>
-</ul>
-<h2 id="JDK-code"><a href="#JDK-code" class="headerlink" title="JDK code"></a>JDK code</h2><ul>
-<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.cpp" target="_blank" rel="noopener">openjdk/unsafe.cpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
-<li><a href="https://github.com/dmlloyd/openjdk/blob/jdk9/jdk9/hotspot/src/share/vm/prims/unsafe.hpp" target="_blank" rel="noopener">openjdk/unsafe.hpp at jdk9/jdk9 · dmlloyd/openjdk</a></li>
-<li><a href="https://github.com/dmlloyd/openjdk/tree/jdk9/jdk9/hotspot/test/runtime/Unsafe" target="_blank" rel="noopener">openjdk/hotspot/test/runtime/Unsafe at jdk9/jdk9 · dmlloyd/openjdk</a></li>
-<li><a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/sun/misc/Unsafe.java#Unsafe" target="_blank" rel="noopener">GC: Unsafe - sun.misc.Unsafe (.java) - GrepCode Class Source</a></li>
+        <h1 id="too-Many-duplicated-TCP-links"><a href="#too-Many-duplicated-TCP-links" class="headerlink" title="too Many duplicated TCP links"></a>too Many duplicated TCP links</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@production-watchdog:~# netstat -an|grep 65003| sort -n | uniq -c</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:11547   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:16857   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:19251   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:21405   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:22151   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:24348   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:25293   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:31504   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:33963   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:37082   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:37454   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:38615   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:40626   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:42882   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:45746   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:48254   ESTABLISHED</span><br></pre></td></tr></table></figure>
+<p>如果存在以下情况，主板断电、重启、弱网环境等，主板无法主动正确关闭已经建立的SOCKET连接，导致服务端出现冗余的连接。<br>主板断电后再上电，旧的连接已经失效，但是会由于未正确关闭，而发生冗余：</p>
+<h1 id="Netty-ByteBuf-leak"><a href="#Netty-ByteBuf-leak" class="headerlink" title="Netty ByteBuf leak"></a>Netty ByteBuf leak</h1><ul>
+<li><a href="http://netty.io/wiki/reference-counted-objects.html" target="_blank" rel="noopener">Netty.docs: Reference counted objects</a></li>
 </ul>
 
       
@@ -362,9 +378,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/netty/" rel="tag"># netty</a>
+          
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Code-Review/" rel="tag"># Code Review</a>
+            <a href="/tags/bug/" rel="tag"># bug</a>
           
         </div>
       
@@ -377,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/10/converting-html-to-text-markdown/" rel="next" title="Converting HTML to Text or Markdown">
-                <i class="fa fa-chevron-left"></i> Converting HTML to Text or Markdown
+              <a href="/2018/04/02/redisson-EVAL-failed-in-tencent-cloud/" rel="next" title="redisson EVAL failed in tencent cloud">
+                <i class="fa fa-chevron-left"></i> redisson EVAL failed in tencent cloud
               </a>
             
           </div>
@@ -386,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/redisson-EVAL-failed-in-tencent-cloud/" rel="prev" title="redisson EVAL failed in tencent cloud">
-                redisson EVAL failed in tencent cloud <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-guide"><span class="nav-number">1.</span> <span class="nav-text">Understanding guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK-code"><span class="nav-number">2.</span> <span class="nav-text">JDK code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#too-Many-duplicated-TCP-links"><span class="nav-number">1.</span> <span class="nav-text">too Many duplicated TCP links</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Netty-ByteBuf-leak"><span class="nav-number">2.</span> <span class="nav-text">Netty ByteBuf leak</span></a></li></ol></div>
             
 
           </div>

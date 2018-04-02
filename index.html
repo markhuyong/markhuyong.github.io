@@ -264,6 +264,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/02/Netty-Issues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/Netty-Issues/" itemprop="url">Netty Issues</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T14:05:36+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="too-Many-duplicated-TCP-links"><a href="#too-Many-duplicated-TCP-links" class="headerlink" title="too Many duplicated TCP links"></a>too Many duplicated TCP links</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@production-watchdog:~# netstat -an|grep 65003| sort -n | uniq -c</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:11547   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:16857   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:19251   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:21405   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:22151   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:24348   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:25293   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:31504   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:33963   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:37082   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:37454   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:38615   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:40626   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:42882   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:45746   ESTABLISHED</span><br><span class="line">      1 tcp6       0      0 10.10.10.10:65003      11.11.11.11:48254   ESTABLISHED</span><br></pre></td></tr></table></figure>
+<p>如果存在以下情况，主板断电、重启、弱网环境等，主板无法主动正确关闭已经建立的SOCKET连接，导致服务端出现冗余的连接。<br>主板断电后再上电，旧的连接已经失效，但是会由于未正确关闭，而发生冗余：</p>
+<h1 id="Netty-ByteBuf-leak"><a href="#Netty-ByteBuf-leak" class="headerlink" title="Netty ByteBuf leak"></a>Netty ByteBuf leak</h1><ul>
+<li><a href="http://netty.io/wiki/reference-counted-objects.html" target="_blank" rel="noopener">Netty.docs: Reference counted objects</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/02/redisson-EVAL-failed-in-tencent-cloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1176,7 +1322,7 @@ format.
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1198,7 +1344,7 @@ format.
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
