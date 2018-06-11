@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,shell,command," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="The Linux Find Command is one of the most important and much used command in Linux sytems. Find command used to search and locate list of files and directories based on conditions you specify for file">
+<meta name="keywords" content="linux,shell,command">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-find">
+<meta property="og:url" content="http://markhuyong.github.io/2018/04/19/linux-find/index.html">
+<meta property="og:site_name" content="markhuyong&#39;s garden">
+<meta property="og:description" content="The Linux Find Command is one of the most important and much used command in Linux sytems. Find command used to search and locate list of files and directories based on conditions you specify for file">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-File-Names-in-Linux.png">
+<meta property="og:image" content="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-Extension-Files-in-Linux.png">
+<meta property="og:image" content="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-File-Extensions-in-Linux.png">
+<meta property="og:image" content="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-Image-File-Extensions.png">
+<meta property="og:updated_time" content="2018-04-19T04:57:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux-find">
+<meta name="twitter:description" content="The Linux Find Command is one of the most important and much used command in Linux sytems. Find command used to search and locate list of files and directories based on conditions you specify for file">
+<meta name="twitter:image" content="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-File-Names-in-Linux.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://markhuyong.github.io/2018/04/19/linux-find/"/>
+
+
+
+
+
+  <title>linux-find | markhuyong's garden</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">markhuyong's garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/19/linux-find/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux-find</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T12:52:33+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>The Linux <strong>Find Command</strong> is one of the most important and much used command in Linux sytems. Find command used to search and locate list of files and directories based on conditions you specify for files that match the arguments. Find can be used in variety of conditions like you can find files by <strong>permissions</strong>, <strong>users</strong>, <strong>groups</strong>, <strong>file type</strong>, <strong>date</strong>, <strong>size</strong> and other possible criteria.</p>
+<p>Through this article we are sharing our day-to-day Linux find command experience and its usage in the form of examples. In this article we will show you the most used <strong>35 Find Commands</strong> examples in Linux. We have divided the section into <strong>Five</strong> parts from basic to advance usage of find command.</p>
+<ol>
+<li><strong>Part I</strong>: Basic Find Commands for Finding Files with Names</li>
+<li><strong>Part II</strong>: Find Files Based on their Permissions</li>
+<li><strong>Part III</strong>: Search Files Based On Owners and Groups</li>
+<li><strong>Part IV</strong>: Find Files and Directories Based on Date and Time</li>
+<li><strong>Part V</strong>: Find Files and Directories Based on Size</li>
+<li><strong>Part VI</strong>: <a href="https://www.tecmint.com/linux-find-command-to-search-multiple-filenames-extensions/" target="_blank" rel="noopener">Find Multiple Filenames in Linux</a></li>
+</ol>
+<p><strong>Part I – Basic Find Commands for Finding Files with Names</strong></p>
+<h4 id="1-Find-Files-Using-Name-in-Current-Directory"><a href="#1-Find-Files-Using-Name-in-Current-Directory" class="headerlink" title="1. Find Files Using Name in Current Directory"></a>1. Find Files Using Name in Current Directory</h4><p>Find all the files whose name is <strong>tecmint.txt</strong> in a current working directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># find . -name tecmint.txt</span><br><span class="line">./tecmint.txt</span><br></pre></td></tr></table></figure>
+<h4 id="2-Find-Files-Under-Home-Directory"><a href="#2-Find-Files-Under-Home-Directory" class="headerlink" title="2. Find Files Under Home Directory"></a>2. Find Files Under Home Directory</h4><p>Find all the files under <strong>/home</strong> directory with name <strong>tecmint.txt</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># find /home -name tecmint.txt</span><br><span class="line">/home/tecmint.txt</span><br></pre></td></tr></table></figure>
+<h4 id="3-Find-Files-Using-Name-and-Ignoring-Case"><a href="#3-Find-Files-Using-Name-and-Ignoring-Case" class="headerlink" title="3. Find Files Using Name and Ignoring Case"></a>3. Find Files Using Name and Ignoring Case</h4><p>Find all the files whose name is <strong>tecmint.txt</strong> and contains both capital and small letters in <strong>/home</strong> directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># find /home -iname tecmint.txt</span><br><span class="line">./tecmint.txt</span><br><span class="line">./Tecmint.txt</span><br></pre></td></tr></table></figure>
+<h4 id="4-Find-Directories-Using-Name"><a href="#4-Find-Directories-Using-Name" class="headerlink" title="4. Find Directories Using Name"></a>4. Find Directories Using Name</h4><p>Find all directories whose name is <strong>Tecmint</strong> in <strong>/</strong> directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># find / -type d -name Tecmint</span><br><span class="line">/Tecmint</span><br></pre></td></tr></table></figure>
+<h4 id="5-Find-PHP-Files-Using-Name"><a href="#5-Find-PHP-Files-Using-Name" class="headerlink" title="5. Find PHP Files Using Name"></a>5. Find PHP Files Using Name</h4><p>Find all <strong>php</strong> files whose name is <strong>tecmint.php</strong> in a current working directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -name tecmint.php</span><br><span class="line">./tecmint.php</span><br></pre></td></tr></table></figure>
+<h4 id="6-Find-all-PHP-Files-in-Directory"><a href="#6-Find-all-PHP-Files-in-Directory" class="headerlink" title="6. Find all PHP Files in Directory"></a>6. Find all PHP Files in Directory</h4><p>Find all <strong>php</strong> files in a directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -name &quot;*.php&quot;</span><br><span class="line">./tecmint.php</span><br><span class="line">./login.php</span><br><span class="line">./index.php</span><br></pre></td></tr></table></figure>
+<p><strong>Part II – Find Files Based on their Permissions</strong></p>
+<h4 id="7-Find-Files-With-777-Permissions"><a href="#7-Find-Files-With-777-Permissions" class="headerlink" title="7. Find Files With 777 Permissions"></a>7. Find Files With 777 Permissions</h4><p>Find all the files whose permissions are <strong>777</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -perm 0777 -print</span><br></pre></td></tr></table></figure>
+<h4 id="8-Find-Files-Without-777-Permissions"><a href="#8-Find-Files-Without-777-Permissions" class="headerlink" title="8. Find Files Without 777 Permissions"></a>8. Find Files Without 777 Permissions</h4><p>Find all the files without permission <strong>777</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type f ! -perm 777</span><br></pre></td></tr></table></figure>
+<h4 id="9-Find-SGID-Files-with-644-Permissions"><a href="#9-Find-SGID-Files-with-644-Permissions" class="headerlink" title="9. Find SGID Files with 644 Permissions"></a>9. Find SGID Files with 644 Permissions</h4><p>Find all the <strong>SGID bit</strong> files whose permissions set to <strong>644</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm 2644</span><br></pre></td></tr></table></figure>
+<h4 id="10-Find-Sticky-Bit-Files-with-551-Permissions"><a href="#10-Find-Sticky-Bit-Files-with-551-Permissions" class="headerlink" title="10. Find Sticky Bit Files with 551 Permissions"></a>10. Find Sticky Bit Files with 551 Permissions</h4><p>Find all the <strong>Sticky Bit</strong> set files whose permission are <strong>551</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm 1551</span><br></pre></td></tr></table></figure>
+<h4 id="11-Find-SUID-Files"><a href="#11-Find-SUID-Files" class="headerlink" title="11. Find SUID Files"></a>11. Find SUID Files</h4><p>Find all <strong>SUID</strong> set files.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm /u=s</span><br></pre></td></tr></table></figure>
+<h4 id="12-Find-SGID-Files"><a href="#12-Find-SGID-Files" class="headerlink" title="12. Find SGID Files"></a>12. Find SGID Files</h4><p>Find all <strong>SGID</strong> set files.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm /g=s</span><br></pre></td></tr></table></figure>
+<h4 id="13-Find-Read-Only-Files"><a href="#13-Find-Read-Only-Files" class="headerlink" title="13. Find Read Only Files"></a>13. Find Read Only Files</h4><p>Find all <strong>Read Only</strong> files.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm /u=r</span><br></pre></td></tr></table></figure>
+<h4 id="14-Find-Executable-Files"><a href="#14-Find-Executable-Files" class="headerlink" title="14. Find Executable Files"></a>14. Find Executable Files</h4><p>Find all <strong>Executable</strong> files.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -perm /a=x</span><br></pre></td></tr></table></figure>
+<h4 id="15-Find-Files-with-777-Permissions-and-Chmod-to-644"><a href="#15-Find-Files-with-777-Permissions-and-Chmod-to-644" class="headerlink" title="15. Find Files with 777 Permissions and Chmod to 644"></a>15. Find Files with 777 Permissions and Chmod to 644</h4><p>Find all <strong>777</strong> permission files and use <strong>chmod</strong> command to set permissions to <strong>644</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type f -perm 0777 -print -exec chmod 644 &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h4 id="16-Find-Directories-with-777-Permissions-and-Chmod-to-755"><a href="#16-Find-Directories-with-777-Permissions-and-Chmod-to-755" class="headerlink" title="16. Find Directories with 777 Permissions and Chmod to 755"></a>16. Find Directories with 777 Permissions and Chmod to 755</h4><p>Find all <strong>777</strong> permission directories and use <strong>chmod</strong> command to set permissions to <strong>755</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type d -perm 777 -print -exec chmod 755 &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h4 id="17-Find-and-remove-single-File"><a href="#17-Find-and-remove-single-File" class="headerlink" title="17. Find and remove single File"></a>17. Find and remove single File</h4><p>To find a single file called <strong>tecmint.txt</strong> and remove it.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -name &quot;tecmint.txt&quot; -exec rm -f &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h4 id="18-Find-and-remove-Multiple-File"><a href="#18-Find-and-remove-Multiple-File" class="headerlink" title="18. Find and remove Multiple File"></a>18. Find and remove Multiple File</h4><p>To find and remove multiple files such as <strong>.mp3</strong> or <strong>.txt</strong>, then use.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -name &quot;*.txt&quot; -exec rm -f &#123;&#125; \;</span><br><span class="line">OR</span><br><span class="line"># find . -type f -name &quot;*.mp3&quot; -exec rm -f &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h4 id="19-Find-all-Empty-Files"><a href="#19-Find-all-Empty-Files" class="headerlink" title="19. Find all Empty Files"></a>19. Find all Empty Files</h4><p>To find all empty files under certain path.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /tmp -type f -empty</span><br></pre></td></tr></table></figure>
+<h4 id="20-Find-all-Empty-Directories"><a href="#20-Find-all-Empty-Directories" class="headerlink" title="20. Find all Empty Directories"></a>20. Find all Empty Directories</h4><p>To file all empty directories under certain path.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /tmp -type d -empty</span><br></pre></td></tr></table></figure>
+<h4 id="21-File-all-Hidden-Files"><a href="#21-File-all-Hidden-Files" class="headerlink" title="21. File all Hidden Files"></a>21. File all Hidden Files</h4><p>To find all hidden files, use below command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /tmp -type f -name &quot;.*&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Part III – Search Files Based On Owners and Groups</strong></p>
+<h4 id="22-Find-Single-File-Based-on-User"><a href="#22-Find-Single-File-Based-on-User" class="headerlink" title="22. Find Single File Based on User"></a>22. Find Single File Based on User</h4><p>To find all or single file called <strong>tecmint.txt</strong> under <strong>/</strong> root directory of owner root.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -user root -name tecmint.txt</span><br></pre></td></tr></table></figure>
+<h4 id="23-Find-all-Files-Based-on-User"><a href="#23-Find-all-Files-Based-on-User" class="headerlink" title="23. Find all Files Based on User"></a>23. Find all Files Based on User</h4><p>To find all files that belongs to user <strong>Tecmint</strong> under <strong>/home</strong> directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /home -user tecmint</span><br></pre></td></tr></table></figure>
+<h4 id="24-Find-all-Files-Based-on-Group"><a href="#24-Find-all-Files-Based-on-Group" class="headerlink" title="24. Find all Files Based on Group"></a>24. Find all Files Based on Group</h4><p>To find all files that belongs to group <strong>Developer</strong> under <strong>/home</strong> directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /home -group developer</span><br></pre></td></tr></table></figure>
+<h4 id="25-Find-Particular-Files-of-User"><a href="#25-Find-Particular-Files-of-User" class="headerlink" title="25. Find Particular Files of User"></a>25. Find Particular Files of User</h4><p>To find all <strong>.txt</strong> files of user <strong>Tecmint</strong> under <strong>/home</strong> directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /home -user tecmint -iname &quot;*.txt&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Part IV – Find Files and Directories Based on Date and Time</strong></p>
+<h4 id="26-Find-Last-50-Days-Modified-Files"><a href="#26-Find-Last-50-Days-Modified-Files" class="headerlink" title="26. Find Last 50 Days Modified Files"></a>26. Find Last 50 Days Modified Files</h4><p>To find all the files which are modified <strong>50</strong> days back.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -mtime 50</span><br></pre></td></tr></table></figure>
+<h4 id="27-Find-Last-50-Days-Accessed-Files"><a href="#27-Find-Last-50-Days-Accessed-Files" class="headerlink" title="27. Find Last 50 Days Accessed Files"></a>27. Find Last 50 Days Accessed Files</h4><p>To find all the files which are accessed <strong>50</strong> days back.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -atime 50</span><br></pre></td></tr></table></figure>
+<h4 id="28-Find-Last-50-100-Days-Modified-Files"><a href="#28-Find-Last-50-100-Days-Modified-Files" class="headerlink" title="28. Find Last 50-100 Days Modified Files"></a>28. Find Last 50-100 Days Modified Files</h4><p>To find all the files which are modified more than <strong>50</strong> days back and less than <strong>100</strong> days.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -mtime +50 –mtime -100</span><br></pre></td></tr></table></figure>
+<h4 id="29-Find-Changed-Files-in-Last-1-Hour"><a href="#29-Find-Changed-Files-in-Last-1-Hour" class="headerlink" title="29. Find Changed Files in Last 1 Hour"></a>29. Find Changed Files in Last 1 Hour</h4><p>To find all the files which are changed in last <strong>1 hour</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -cmin -60</span><br></pre></td></tr></table></figure>
+<h4 id="30-Find-Modified-Files-in-Last-1-Hour"><a href="#30-Find-Modified-Files-in-Last-1-Hour" class="headerlink" title="30. Find Modified Files in Last 1 Hour"></a>30. Find Modified Files in Last 1 Hour</h4><p>To find all the files which are modified in last <strong>1 hour</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -mmin -60</span><br></pre></td></tr></table></figure>
+<h4 id="31-Find-Accessed-Files-in-Last-1-Hour"><a href="#31-Find-Accessed-Files-in-Last-1-Hour" class="headerlink" title="31. Find Accessed Files in Last 1 Hour"></a>31. Find Accessed Files in Last 1 Hour</h4><p>To find all the files which are accessed in last <strong>1 hour</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -amin -60</span><br></pre></td></tr></table></figure>
+<p><strong>Part V – Find Files and Directories Based on Size</strong></p>
+<h4 id="32-Find-50MB-Files"><a href="#32-Find-50MB-Files" class="headerlink" title="32. Find 50MB Files"></a>32. Find 50MB Files</h4><p>To find all <strong>50MB</strong> files, use.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -size 50M</span><br></pre></td></tr></table></figure>
+<h4 id="33-Find-Size-between-50MB-–-100MB"><a href="#33-Find-Size-between-50MB-–-100MB" class="headerlink" title="33. Find Size between 50MB – 100MB"></a>33. Find Size between 50MB – 100MB</h4><p>To find all the files which are greater than <strong>50MB</strong> and less than <strong>100MB</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -size +50M -size -100M</span><br></pre></td></tr></table></figure>
+<h4 id="34-Find-and-Delete-100MB-Files"><a href="#34-Find-and-Delete-100MB-Files" class="headerlink" title="34. Find and Delete 100MB Files"></a>34. Find and Delete 100MB Files</h4><p>To find all <strong>100MB</strong> files and delete them using one single command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -size +100M -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h4 id="35-Find-Specific-Files-and-Delete"><a href="#35-Find-Specific-Files-and-Delete" class="headerlink" title="35. Find Specific Files and Delete"></a>35. Find Specific Files and Delete</h4><p>Find all <strong>.mp3</strong> files with more than <strong>10MB</strong> and delete them using one single command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type f -name *.mp3 -size +10M -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<p>That’s it, We are ending this post here, In our next article we will discuss more about other Linux commands in depth with practical examples. Let us know your opinions on this article using our comment section.</p>
+<p>Many times, we are locked in a situation where we have to search for multiple files with different extensions, this has probably happened to several Linux users especially from within the terminal.</p>
+<p>There are several Linux utilities that we can use to locate or find files on the file system, but finding multiple filenames or files with different extensions can sometimes prove tricky and requires specific commands.</p>
+<p><img src="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-File-Names-in-Linux.png" alt="Find Multiple File Names in Linux"></p>
+<p>Find Multiple File Names in Linux</p>
+<p>One of the many utilities for locating files on a Linux file system is the <code>find</code> utility and in this how-to guide, we shall walk through a few examples of using <strong>find</strong> to help us locate multiple filenames at once.</p>
+<p>Before we dive into the actual commands, let us look at a brief introduction to the Linux <code>find</code> utility.</p>
+<p>The simplest and general syntax of the find utility is as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find directory options [ expression ]</span><br></pre></td></tr></table></figure>
+<p>Let us proceed to look at some examples of <strong>find</strong> command in Linux.</p>
+<p><strong>1.</strong> Assuming that you want to find all files in the current directory with <code>.sh</code> and <code>.txt</code> file extensions, you can do this by running the command below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f \( -name &quot;*.sh&quot; -o -name &quot;*.txt&quot; \)</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-Extension-Files-in-Linux.png" alt="Find .sh and .txt Extension Files in Linux"></p>
+<p>Find .sh and .txt Extension Files in Linux</p>
+<p>Interpretation of the command above:</p>
+<ol>
+<li><code>.</code> means the current directory</li>
+<li><code>-type</code> option is used to specify file type and here, we are searching for regular files as represented by <code>f</code></li>
+<li><code>-name</code> option is used to specify a search pattern in this case, the file extensions</li>
+<li><code>-o</code> means “OR”</li>
+</ol>
+<p>It is recommended that you enclose the file extensions in a bracket, and also use the <code>\</code> ( <strong>back slash</strong>) escape character as in the command.</p>
+<p><strong>2.</strong> To find three filenames with <code>.sh</code>, <code>.txt</code> and <code>.c</code> extensions, issues the command below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f \( -name &quot;*.sh&quot; -o -name &quot;*.txt&quot; -o -name &quot;*.c&quot; \)</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-File-Extensions-in-Linux.png" alt="Find Multiple File Extensions in Linux"></p>
+<p>Find Multiple File Extensions in Linux</p>
+<p><strong>3.</strong> Here is another example where we search for files with <code>.png</code>, <code>.jpg</code>, <code>.deb</code> and <code>.pdf</code> extensions:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /home/aaronkilik/Documents/ -type f \( -name &quot;*.png&quot; -o -name &quot;*.jpg&quot; -o -name &quot;*.deb&quot; -o -name &quot;.pdf&quot; \)</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.tecmint.com/wp-content/uploads/2016/07/Find-Multiple-Image-File-Extensions.png" alt="Find More than 3 File Extensions in Linux"></p>
+<p>Find More than 3 File Extensions in Linux</p>
+<p>When you critically observe all the commands above, the little trick is using the <code>-o</code> option in the <strong>find</strong> command, it enables you to add more filenames to the search array, and also knowing the filenames or file extensions you are searching for.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/command/" rel="tag"># command</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/netstat/" rel="next" title="netstat">
+                <i class="fa fa-chevron-left"></i> netstat
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/linux-ps/" rel="prev" title="linux-ps">
+                linux-ps <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="markhuyong" />
+          <p class="site-author-name" itemprop="name">markhuyong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Find-Files-Using-Name-in-Current-Directory"><span class="nav-number">1.</span> <span class="nav-text">1. Find Files Using Name in Current Directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Find-Files-Under-Home-Directory"><span class="nav-number">2.</span> <span class="nav-text">2. Find Files Under Home Directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Find-Files-Using-Name-and-Ignoring-Case"><span class="nav-number">3.</span> <span class="nav-text">3. Find Files Using Name and Ignoring Case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Find-Directories-Using-Name"><span class="nav-number">4.</span> <span class="nav-text">4. Find Directories Using Name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Find-PHP-Files-Using-Name"><span class="nav-number">5.</span> <span class="nav-text">5. Find PHP Files Using Name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Find-all-PHP-Files-in-Directory"><span class="nav-number">6.</span> <span class="nav-text">6. Find all PHP Files in Directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Find-Files-With-777-Permissions"><span class="nav-number">7.</span> <span class="nav-text">7. Find Files With 777 Permissions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Find-Files-Without-777-Permissions"><span class="nav-number">8.</span> <span class="nav-text">8. Find Files Without 777 Permissions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Find-SGID-Files-with-644-Permissions"><span class="nav-number">9.</span> <span class="nav-text">9. Find SGID Files with 644 Permissions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-Find-Sticky-Bit-Files-with-551-Permissions"><span class="nav-number">10.</span> <span class="nav-text">10. Find Sticky Bit Files with 551 Permissions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-Find-SUID-Files"><span class="nav-number">11.</span> <span class="nav-text">11. Find SUID Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-Find-SGID-Files"><span class="nav-number">12.</span> <span class="nav-text">12. Find SGID Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-Find-Read-Only-Files"><span class="nav-number">13.</span> <span class="nav-text">13. Find Read Only Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-Find-Executable-Files"><span class="nav-number">14.</span> <span class="nav-text">14. Find Executable Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-Find-Files-with-777-Permissions-and-Chmod-to-644"><span class="nav-number">15.</span> <span class="nav-text">15. Find Files with 777 Permissions and Chmod to 644</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-Find-Directories-with-777-Permissions-and-Chmod-to-755"><span class="nav-number">16.</span> <span class="nav-text">16. Find Directories with 777 Permissions and Chmod to 755</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-Find-and-remove-single-File"><span class="nav-number">17.</span> <span class="nav-text">17. Find and remove single File</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-Find-and-remove-Multiple-File"><span class="nav-number">18.</span> <span class="nav-text">18. Find and remove Multiple File</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-Find-all-Empty-Files"><span class="nav-number">19.</span> <span class="nav-text">19. Find all Empty Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-Find-all-Empty-Directories"><span class="nav-number">20.</span> <span class="nav-text">20. Find all Empty Directories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-File-all-Hidden-Files"><span class="nav-number">21.</span> <span class="nav-text">21. File all Hidden Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-Find-Single-File-Based-on-User"><span class="nav-number">22.</span> <span class="nav-text">22. Find Single File Based on User</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-Find-all-Files-Based-on-User"><span class="nav-number">23.</span> <span class="nav-text">23. Find all Files Based on User</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-Find-all-Files-Based-on-Group"><span class="nav-number">24.</span> <span class="nav-text">24. Find all Files Based on Group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-Find-Particular-Files-of-User"><span class="nav-number">25.</span> <span class="nav-text">25. Find Particular Files of User</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-Find-Last-50-Days-Modified-Files"><span class="nav-number">26.</span> <span class="nav-text">26. Find Last 50 Days Modified Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-Find-Last-50-Days-Accessed-Files"><span class="nav-number">27.</span> <span class="nav-text">27. Find Last 50 Days Accessed Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-Find-Last-50-100-Days-Modified-Files"><span class="nav-number">28.</span> <span class="nav-text">28. Find Last 50-100 Days Modified Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-Find-Changed-Files-in-Last-1-Hour"><span class="nav-number">29.</span> <span class="nav-text">29. Find Changed Files in Last 1 Hour</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30-Find-Modified-Files-in-Last-1-Hour"><span class="nav-number">30.</span> <span class="nav-text">30. Find Modified Files in Last 1 Hour</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#31-Find-Accessed-Files-in-Last-1-Hour"><span class="nav-number">31.</span> <span class="nav-text">31. Find Accessed Files in Last 1 Hour</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-Find-50MB-Files"><span class="nav-number">32.</span> <span class="nav-text">32. Find 50MB Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#33-Find-Size-between-50MB-–-100MB"><span class="nav-number">33.</span> <span class="nav-text">33. Find Size between 50MB – 100MB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#34-Find-and-Delete-100MB-Files"><span class="nav-number">34.</span> <span class="nav-text">34. Find and Delete 100MB Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#35-Find-Specific-Files-and-Delete"><span class="nav-number">35.</span> <span class="nav-text">35. Find Specific Files and Delete</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">markhuyong</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

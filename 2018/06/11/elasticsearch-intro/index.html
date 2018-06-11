@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="elasticsearch,ELK," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="How to useTake it easyThe Mists of Time Many years ago, a newly married unemployed developer called Shay Banon followed his wife to London, where she was studying to be a chef. While looking for gainf">
+<meta name="keywords" content="elasticsearch,ELK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch intro">
+<meta property="og:url" content="http://markhuyong.github.io/2018/06/11/elasticsearch-intro/index.html">
+<meta property="og:site_name" content="markhuyong&#39;s garden">
+<meta property="og:description" content="How to useTake it easyThe Mists of Time Many years ago, a newly married unemployed developer called Shay Banon followed his wife to London, where she was studying to be a chef. While looking for gainf">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527839724538.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527839786708.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527839847776.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527842535887.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527831641278.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527833552771.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527665943347.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527670661895.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527836752076.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/invertedIndex.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527670820582.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527845763041.jpg">
+<meta property="og:image" content="http://markhuyong.github.io/assets/1527845880572.jpg">
+<meta property="og:updated_time" content="2018-06-11T15:04:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch intro">
+<meta name="twitter:description" content="How to useTake it easyThe Mists of Time Many years ago, a newly married unemployed developer called Shay Banon followed his wife to London, where she was studying to be a chef. While looking for gainf">
+<meta name="twitter:image" content="http://markhuyong.github.io/assets/1527839724538.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://markhuyong.github.io/2018/06/11/elasticsearch-intro/"/>
+
+
+
+
+
+  <title>elasticsearch intro | markhuyong's garden</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">markhuyong's garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/06/11/elasticsearch-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch intro</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-11T22:34:17+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><h3 id="Take-it-easy"><a href="#Take-it-easy" class="headerlink" title="Take it easy"></a>Take it easy</h3><p><strong>The Mists of Time</strong></p>
+<p>Many years ago, a newly married unemployed developer called Shay Banon followed his wife to London, where she was studying to be a chef. While looking for gainful employment, he started playing with an early version of Lucene, with the intent of building his wife a recipe search engine.</p>
+<p>Working directly with Lucene can be tricky, so Shay started work on an abstraction layer to make it easier for Java programmers to add search to their applications. He released this as his first open source project, called Compass.</p>
+<p>Later Shay took a job working in a high-performance, distributed environment with in-memory data grids. The need for a high-performance, real-time, distributed search engine was obvious, and he decided to rewrite the Compass libraries as a standalone server called Elasticsearch.</p>
+<p>The first public release came out in February 2010. Since then, Elasticsearch has become one of the most popular projects on GitHub with commits from over 300 contributors. A company has formed around Elasticsearch to provide commercial support and to develop new features, but Elasticsearch is, and forever will be, open source and available to all.</p>
+<p>Shay’s wife is still waiting for the recipe search…</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/getting-started.html" target="_blank" rel="noopener">«  Getting Started</a>  </p>
+<ul>
+<li><a href="https://github.com/elastic/elasticsearch-definitive-guide/" target="_blank" rel="noopener">elastic/elasticsearch-definitive-guide: The Definitive Guide to Elasticsearch</a></li>
+<li><a href="https://www.amazon.com/ElasticSearch-Cookbook-Second-Alberto-Paro/dp/1783554835/ref=dp_ob_title_bk?dpID=51w76jr4KML&amp;preST=_SX218_BO1,204,203,200_QL40_&amp;dpSrc=detail" target="_blank" rel="noopener">ElasticSearch Cookbook, Second Edition: Alberto Paro: 9781783554836: Amazon.com: Books</a></li>
+</ul>
+<h4 id="use-cases"><a href="#use-cases" class="headerlink" title="use cases"></a>use cases</h4><ul>
+<li>Tag Cloud<br><img src="/assets/1527839724538.jpg" alt="1527839724538"></li>
+<li>Heatmaps<br><img src="/assets/1527839786708.jpg" alt="1527839786708"></li>
+<li>Vector Maps<br><img src="/assets/1527839847776.jpg" alt="1527839847776"></li>
+<li><p>Detect Abnormal<br><img src="/assets/1527842535887.jpg" alt="1527842535887"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UID: 0000000000600036</span><br><span class="line"></span><br><span class="line">// detect abnormal</span><br><span class="line">tags:watchdog_frame AND message: (+0000000000600036)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Wikipedia uses Elasticsearch to provide full-text search with highlighted search snippets, and <em>search-as-you-type</em> and <em>did-you-mean</em> suggestions.</p>
+<ul>
+<li><a href="https://blog.wikimedia.org/2014/01/06/wikimedia-moving-to-elasticsearch/" target="_blank" rel="noopener">Wikimedia moving to Elasticsearch – Wikimedia Blog</a></li>
+<li><a href="https://wikitech.wikimedia.org/wiki/Logstash" target="_blank" rel="noopener">Logstash - Wikitech</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em>The Guardian</em> uses Elasticsearch to combine visitor logs with social-network data to provide real-time feedback to its editors about the public’s response to new articles.<br><img src="/assets/1527831641278.jpg" alt="1527831641278"></p>
+<ul>
+<li><a href="https://www.elastic.co/use-cases/guardian" target="_blank" rel="noopener">The Guardian uses the Elastic Stack to deliver real-time visibility of site traffic | Elastic</a></li>
+<li><a href="https://www.elastic.co/elasticon/tour/2015/london/making-journalism-better-with-elasticsearch" target="_blank" rel="noopener">Making Journalism Better With Elasticsearch | Elastic</a></li>
+<li><a href="https://www.infoq.com/presentations/elasticsearch-guardian" target="_blank" rel="noopener">How Elasticsearch Powers the Guardian’s Newsroom</a></li>
+</ul>
+</li>
+<li><p>Stack Overflow combines full-text search with geolocation queries and uses <em>more-like-this</em> to find related questions and answers.</p>
+<ul>
+<li><a href="https://www.elastic.co/videos/stack-overflow-uses-facets-and-geo-coding" target="_blank" rel="noopener">Stack Overflow Uses Facets and Geo-Coding | Elastic</a></li>
+<li><a href="https://meta.stackexchange.com/questions/187431/how-does-stack-overflow-implement-its-search-indexing/187501#187501" target="_blank" rel="noopener">How does Stack Overflow implement its search indexing? - Meta Stack Exchange</a></li>
+<li><a href="https://meta.stackexchange.com/questions/160100/a-new-search-engine-for-stack-exchange" target="_blank" rel="noopener">A new search engine for Stack Exchange - Meta Stack Exchange</a></li>
+<li><a href="https://nickcraver.com/blog/2016/02/17/stack-overflow-the-architecture-2016-edition/" target="_blank" rel="noopener">Nick Craver - Stack Overflow: The Architecture - 2016 Edition</a></li>
+<li><a href="http://highscalability.com/blog/2014/7/21/stackoverflow-update-560m-pageviews-a-month-25-servers-and-i.html" target="_blank" rel="noopener">StackOverflow Update: 560M Pageviews a Month, 25 Servers, and It’s All About Performance - High Scalability -</a></li>
+</ul>
+</li>
+<li><p>GitHub uses Elasticsearch to query 130 billion lines of code.<br><img src="/assets/1527833552771.jpg" alt="1527833552771"></p>
+<ul>
+<li><a href="https://www.elastic.co/use-cases/github" target="_blank" rel="noopener">GitHub uses Elasticsearch to index over 8 million code repositories | Elastic</a></li>
+<li><a href="https://www.elastic.co/elasticon/2015/sf/elasticsearch-in-anger-stories-from-the-github-search-clusters" target="_blank" rel="noopener">Elasticsearch in Anger: Stories from the GitHub Search Clusters | Elastic</a></li>
+</ul>
+</li>
+<li><p><a href="https://logz.io/blog/15-tech-companies-chose-elk-stack/" target="_blank" rel="noopener">15 Companies Using the ELK Stack</a></p>
+</li>
+</ul>
+<h4 id="use-Date-Range"><a href="#use-Date-Range" class="headerlink" title="use Date Range"></a>use Date Range</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// search log in the defined Range</span><br><span class="line">logtime:[2018-05-01 TO 2018-05-30]</span><br></pre></td></tr></table></figure>
+<h4 id="use-tags-and-message-to-search-frameLog"><a href="#use-tags-and-message-to-search-frameLog" class="headerlink" title="use tags and message to search frameLog"></a>use tags and message to search frameLog</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">//search tags is watchdog_frame and message contains 82973 (orderId)</span><br><span class="line">tags:watchdog_frame AND message: ( 82973)</span><br><span class="line"></span><br><span class="line">// 下发命令</span><br><span class="line">// OrderUpdateOperation(下发订单)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x81&quot;)</span><br><span class="line"></span><br><span class="line">// TimeAdjustOperation(时间调整)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x04&quot;)</span><br><span class="line"></span><br><span class="line">// AirConditionerOperation(空调配置)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x06&quot;)</span><br><span class="line"></span><br><span class="line">// OutputOperation(output控制)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x82&quot;)</span><br><span class="line"></span><br><span class="line">// OutputOperation(output控制)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x82&quot;)</span><br><span class="line"></span><br><span class="line">// RealTimeOperation(实时操作)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot;)</span><br><span class="line"></span><br><span class="line">// start RealTimeOperation(实时操作)</span><br><span class="line"></span><br><span class="line">// 请求上报状态信息报文命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x00&quot;)</span><br><span class="line"></span><br><span class="line">// 请求上报版本号命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x01&quot;)</span><br><span class="line"></span><br><span class="line">// 远程重启命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x02&quot;)</span><br><span class="line"></span><br><span class="line">// reset命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x03&quot;)</span><br><span class="line"></span><br><span class="line">// 服务器开门命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x04&quot;)</span><br><span class="line"></span><br><span class="line">// 请求位置命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x05&quot;)</span><br><span class="line"></span><br><span class="line">// 请求GSM信息命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x06&quot;)</span><br><span class="line"></span><br><span class="line">// 设备锁命令</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x84&quot; AND &quot;command=0x07&quot;)</span><br><span class="line"></span><br><span class="line">// end RealTimeOperation(实时操作)</span><br><span class="line"></span><br><span class="line">// OutputModeConfiguration(输出模式)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x08&quot;)</span><br><span class="line"></span><br><span class="line">// MultimediaOperation(多媒体操作)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x01,0x83&quot;)</span><br><span class="line"></span><br><span class="line">// 上报报文</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(空调关)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x03&quot;)</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(空调关)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x03&quot; AND &quot;airConditionState&quot; AND &quot;State:Close&quot;)</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(空调开)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x03&quot; AND &quot;airConditionState&quot; AND &quot;State:Open&quot;)</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(开机报文)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x01&quot;)</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(关机报文)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x02&quot;)</span><br><span class="line"></span><br><span class="line">// RoutineStatusReport(协议看门狗重启报文)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x05&quot;)</span><br><span class="line"></span><br><span class="line">// UserInputReport(用户输入事件报文)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x21&quot;)</span><br><span class="line"></span><br><span class="line">// DoorStatusReport(门禁状态)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x22&quot;)</span><br><span class="line"></span><br><span class="line">// GSMModuleReport(版本信息)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x92&quot;)</span><br><span class="line"></span><br><span class="line">// SensorAlarmReport(门禁报警)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x31&quot; AND &quot;DoorAlarm&quot;)</span><br><span class="line"></span><br><span class="line">// SensorAlarmReport(烟雾报警)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x31&quot; AND &quot;SmokeAlarm&quot;)</span><br><span class="line"></span><br><span class="line">// PowerEventReport(电源事件)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x11&quot;)</span><br><span class="line"></span><br><span class="line">// GSMModuleReport(GSM卡信息)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x92&quot;)</span><br><span class="line"></span><br><span class="line">// LocationReport(定位)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x03,0x91&quot;)</span><br><span class="line"></span><br><span class="line">// HeartBeat(心跳包)</span><br><span class="line">tags:watchdog_frame AND message: (0000000000600042 AND &quot;0x04,0xFF&quot;)</span><br></pre></td></tr></table></figure>
+<h4 id="search-ActionLog"><a href="#search-ActionLog" class="headerlink" title="search ActionLog"></a>search ActionLog</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logType: WARN</span><br><span class="line">logType: INFO</span><br><span class="line">logType: ERROR</span><br></pre></td></tr></table></figure>
+<h4 id="more"><a href="#more" class="headerlink" title="more"></a>more</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// use regex</span><br><span class="line">tags:watchdog_frame AND message: (+0000000000600042 AND 0x0?,0x0?)</span><br></pre></td></tr></table></figure>
+<h4 id="Direct-access-to-the-Elasticsearch-API"><a href="#Direct-access-to-the-Elasticsearch-API" class="headerlink" title="Direct access to the Elasticsearch API"></a>Direct access to the Elasticsearch API</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">// indices setting</span><br><span class="line">$ curl -XPUT https://&lt;endpoint&gt;/blog -d &apos;&#123;</span><br><span class="line">&quot;settings&quot; : &#123; &quot;number_of_shards&quot; : 3, &quot;number_of_replicas&quot; : 1 &#125; &#125;&apos;</span><br><span class="line"></span><br><span class="line">// create a post</span><br><span class="line">$ curl -XPOST http://&lt;endpoint&gt;/blog/post/1 -d &apos;&#123;</span><br><span class="line">&quot;author&quot;:&quot;jon handler&quot;,</span><br><span class="line">&quot;title&quot;:&quot;Amazon ES Launch&quot; &#125;&apos;</span><br><span class="line"></span><br><span class="line">// bulk create posts</span><br><span class="line">$ curl -XPOST https://&lt;endpoint&gt;/blog/post/_bulk -d &apos;</span><br><span class="line">&#123; &quot;index&quot; : &#123; &quot;index&quot; : &quot;blog&quot;, &quot;type&quot; : &quot;post&quot;, &quot;_id&quot; : &quot;2&quot;&#125;&#125;</span><br><span class="line">&#123;&quot;title&quot;:&quot;Amazon ES for search&quot;, &quot;author&quot;: &quot;carl meadows&quot;&#125;,</span><br><span class="line">&#123; &quot;index&quot; : &#123; &quot;index&quot;:&quot;blog&quot;, &quot;type&quot;:&quot;post&quot;, &quot;_id&quot;:&quot;3&quot; &#125; &#125;</span><br><span class="line">&#123; &quot;title&quot;:&quot;Analytics too&quot;, &quot;author&quot;: &quot;vivek sriram&quot;&#125;&apos;</span><br><span class="line"></span><br><span class="line">// search posts</span><br><span class="line">$ curl -XGET http://&lt;endpoint&gt;/_search?q=ES</span><br><span class="line">&#123;</span><br><span class="line">   &quot;took&quot;:16,</span><br><span class="line">   &quot;timed_out&quot;:false,</span><br><span class="line">   &quot;shards&quot;:&#123;</span><br><span class="line">      &quot;total&quot;:3,</span><br><span class="line">      &quot;successful&quot;:3,</span><br><span class="line">      &quot;failed&quot;:0</span><br><span class="line">   &#125;,</span><br><span class="line">   &quot;hits&quot;:&#123;</span><br><span class="line">      &quot;total&quot;:2,</span><br><span class="line">      &quot;max_score&quot;:0.13424811,</span><br><span class="line">      &quot;hits&quot;:[</span><br><span class="line">         &#123;</span><br><span class="line">            &quot;index&quot;:&quot;blog&quot;,</span><br><span class="line">            &quot;type&quot;:&quot;post&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;1&quot;,</span><br><span class="line">            &quot;score&quot;:0.13424811,</span><br><span class="line">            &quot;source&quot;:&#123;</span><br><span class="line">               &quot;author&quot;:&quot;jon handler&quot;,</span><br><span class="line">               &quot;title&quot;:&quot;Amazon ES Launch&quot;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">         &#123;</span><br><span class="line">            &quot;index&quot;:&quot;blog&quot;,</span><br><span class="line">            &quot;type&quot;:&quot;post&quot;,</span><br><span class="line">            &quot;id&quot;:&quot;2&quot;,</span><br><span class="line">            &quot;score&quot;:0.11506981,</span><br><span class="line">            &quot;_source&quot;:&#123;</span><br><span class="line">               &quot;title&quot;:&quot;Amazon ES for search&quot;,</span><br><span class="line">               &quot;author&quot;:&quot;carl meadows&quot;</span><br><span class="line">            &#125;,</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">      ]</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Is it running?</span><br><span class="line">http://47.97.104.178:9200/?pretty</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;Vvew76v&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;cluster_uuid&quot; : &quot;RRMIEU-MQUS-BE5sVOKDKQ&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;6.1.1&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;bd92e7f&quot;,</span><br><span class="line">    &quot;build_date&quot; : &quot;2017-12-17T20:23:25.338Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;7.1.0&quot;,</span><br><span class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,</span><br><span class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.x/query-dsl-query-string-query.html#query-string-syntax" target="_blank" rel="noopener">Query String Query | Elasticsearch Reference [6.x] | Elastic</a></li>
+</ul>
+<h2 id="How-to-view"><a href="#How-to-view" class="headerlink" title="How to view"></a>How to view</h2><h3 id="Why-Elastic"><a href="#Why-Elastic" class="headerlink" title="Why Elastic"></a>Why Elastic</h3><h4 id="Distributed-amp-Scalable"><a href="#Distributed-amp-Scalable" class="headerlink" title="Distributed &amp; Scalable"></a>Distributed &amp; Scalable</h4><ul>
+<li><p>Resilient; designed for scale-out</p>
+</li>
+<li><p>High availability; multitenancy</p>
+</li>
+<li><p>Structured &amp; unstructured data</p>
+</li>
+</ul>
+<h4 id="Developer-Friendly"><a href="#Developer-Friendly" class="headerlink" title="Developer Friendly"></a>Developer Friendly</h4><ul>
+<li><p>Schemaless</p>
+</li>
+<li><p>Native JSON</p>
+</li>
+<li><p>Client libraries</p>
+</li>
+<li><p>Apache Lucene</p>
+</li>
+</ul>
+<h4 id="Search-amp-Analytics"><a href="#Search-amp-Analytics" class="headerlink" title="Search &amp; Analytics"></a>Search &amp; Analytics</h4><ul>
+<li><p>Near Real-time</p>
+</li>
+<li><p>Full-text search</p>
+</li>
+<li><p>Aggregations</p>
+</li>
+<li><p>Geospatial</p>
+</li>
+<li><p>Multilingua</p>
+</li>
+</ul>
+<h3 id="The-Elastic-Stack"><a href="#The-Elastic-Stack" class="headerlink" title="The Elastic Stack"></a>The Elastic Stack</h3><p> <img src="/assets/1527665943347.jpg" alt="1527665943347"></p>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p><img src="/assets/1527670661895.jpg" alt="1527670661895"></p>
+<h3 id="Elasticsearch-Cluster-deploy"><a href="#Elasticsearch-Cluster-deploy" class="headerlink" title="Elasticsearch Cluster deploy"></a>Elasticsearch Cluster deploy</h3><p><img src="/assets/1527836752076.jpg" alt="1527836752076"></p>
+<h3 id="TERMINOLOGY"><a href="#TERMINOLOGY" class="headerlink" title="TERMINOLOGY"></a>TERMINOLOGY</h3><table>
+<thead>
+<tr>
+<th>MySQL</th>
+<th>Elastic Search</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>Index</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>Type</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>Document</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Field</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Mapping</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>Everything is indexed</td>
+</tr>
+<tr>
+<td>Partition</td>
+<td>Shard</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Query DSL</td>
+</tr>
+<tr>
+<td>SELECT field, COUNT(*)FROM table GROUP BY field</td>
+<td>Facet(Aggregations)</td>
+</tr>
+<tr>
+<td>SELECT * FROM table …</td>
+<td>GET http://…</td>
+</tr>
+<tr>
+<td>UPDATE table SET …</td>
+<td>PUT http://…</td>
+</tr>
+</tbody>
+</table>
+<h2 id="How-to-understand"><a href="#How-to-understand" class="headerlink" title="How to understand"></a>How to understand</h2><h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>Cluster:<br>A cluster consists of one or more nodes which share the same cluster name. Each cluster has a single master node which is chosen automatically by the cluster and which can be replaced if the current master node fails</li>
+</ul>
+<ul>
+<li><p>Node:<br>A node is a running instance of ElasticSearch which belongs to a cluster. Multiple nodes can be started on a single server for testing purposes, but usually you should have one node per server. At startup, a node will use unicast for multicast, if specified) to discover an existing cluster with the same cluster name and will try to join that cluster.</p>
+</li>
+<li><p>Index:<br>An index is like a database in a relational database. It has a mapping which defines multiple types. An index is a logical namespace which maps to one or more primary shards and can have zero or more replica shards.</p>
+</li>
+<li><p>Type:<br>A type is like a table in a relational database. Each type has a list of fields that can be specified for documents of that type. The mapping defines how each field in the document is analyzed.</p>
+</li>
+<li><p>Document:<br>A document is a SON document which is stored in ElasticSearch. it is like a row in a table in a relational database. Each<br>document is stored in an index and has a type and an id a document is a JSON object(also known in other languages as a hash/hashmap/associative array) which contains zero or more fields, or key-value pairs. The original JSON document that is indexed will be stored in the <code>_source</code> field, which is returned by default when getting or searching for a document.</p>
+</li>
+<li><p>Field:<br>A document contains a list of fields, or key-value pairs. The value can be a simple(scalar) value (eg a string, integer, date),or a nested structure like an array or an object. A field is similar to a column in a table in a relational database. The mapping for each field has a field type (not to be confused with document type)which indicates the type of data that can be stored in that field, eg integer, string, object. The mapping also allows you to define (amongst other things) how the value for a field should be analyzed.</p>
+</li>
+<li><p>Mapping:<br>A mapping is like a ‘schema definition’ in a relational database. Each index has a mapping, which defines each type within the index, plus a number of index-wide settings A mapping can either be defined explicitly, or it will be generated automatically when a document is indexed.</p>
+</li>
+<li><p>Facets(Aggregations):<br>Faceted search refers to a way to explore large amounts of data by displaying summaries about various partitions of the data and later allowing to narrow the navigation to a specific partition.<br>In Elasticsearch, <code>facets</code> are also the name of a feature that allowed to compute these summaries. <code>facets</code> have been replaced by <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.1/search-aggregations.html" target="_blank" rel="noopener">aggregations</a> in Elasticsearch 1.0, which are a superset of facets.</p>
+</li>
+<li><p>Shard:<br>A shard is a single Lucene instance. It is a low-level “worker” unit which is managed automatically by ElasticSearch. An index is a logical namespace which points to primary and replica shards.<br>ElasticSearch distributes shards amongst all nodes in the cluster, and can move shards automatically from one node to another in the case of node failure, or the addition of new nodes</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/47003336/need-elasticsearch-index-sharding-explanation?rq=1" target="_blank" rel="noopener">lucene - need elasticsearch index sharding explanation - Stack Overflow</a></li>
+</ul>
+</li>
+<li><p>Primary Shard:<br>Each document is stored in a single primary shard. When a document is send for indexing, it is indexed first on the primary shard, then on all replicas of the primary shard. By default, an index has 5 primary shards. You can specify fewer or more primary shards to scale the number of documents that your index can handle.</p>
+</li>
+<li><p>Replica Shard:<br>Each primary shard can have zero or more replicas. A replica is a copy of the primary shard, and has two purposes:<br>a. increase failover: a replica shard can be promoted to a primary shard if the primary fails.<br>b. increase performance: get and search requests can be handled by primary or replica shards.</p>
+</li>
+<li>Identified by “_index/_type/_id”</li>
+</ul>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><ul>
+<li>cluster.name:<br>Cluster name identifies duster for auto-discovery If production environment has multiple clusters on the same network, duster name must be unique.</li>
+<li>node.name:<br>Node names are generated dynamically on startup. But user can specify a name to node manual.</li>
+<li>node.master&amp;node.data:<br>Every node can be configured to allow or deny being eligible as the master, and to allow or deny to store the data, Master allow this node to be eligible as a master node(enabled by default)and Data allow this node to store data (enabled by default)</li>
+</ul>
+<p>Following are the settings to design advanced duster topologies.</p>
+<ol>
+<li><p>If a node to never become a master node, only to hold data. This will be the” workhorse”of the duster.<br><code>node master: false, node data: true</code></p>
+</li>
+<li><p>If a node to only serve as a master and not to store data and to have free resources. This will be the “coordinator” of the cluster.<br><code>node master: true, node data: false</code></p>
+</li>
+<li><p>If a node to be neither master nor data node, but to act as a”search load balancer”(fetching data from nodes, aggregating, etc)<br><code>node master: false, node data: false</code></p>
+</li>
+</ol>
+<ul>
+<li><p>Index:<br>A number of options(such as shard/replica options, mapping or analyzer definitions, translog settings, .) can be set for indices globally, in this file.<br>Note, that it makes more sense to configure index settings specifically for a certain index, either when creating it or by using the index templates API..<br>example.<br><code>index.number_of_shards: 5, index.number_of_replicas: 1</code></p>
+</li>
+<li><p>Discovery:<br>ElasticSearch supports different types of discovery, which makes multiple ElasticSearch instances talk to each other.<br>The default type of discovery is multicast. Unicast discovery allows to explicitly control which nodes will be used to discover the duster. it can be used when multicast is not present, or to restrict the duster communication-wise.</p>
+</li>
+</ul>
+<p><strong>Index Versus Index Versus Inverted Index</strong></p>
+<p><img src="/assets/invertedIndex.jpg" alt="invertedIndex"></p>
+<p>You may already have noticed that the word <em>index</em> is overloaded with several meanings in the context of Elasticsearch. A little clarification is necessary:</p>
+<ul>
+<li><p>Index (noun)</p>
+<p>As explained previously, an <em>index</em> is like a <em>database</em> in a traditional relational database. It is the place to store related documents. The plural of <em>index</em> is <em>indices</em> or <em>indexes</em>.</p>
+</li>
+<li><p>Index (verb)</p>
+<p><em>To index a document</em> is to store a document in an <em>index (noun)</em> so that it can be retrieved and queried. It is much like the <code>INSERT</code> keyword in SQL except that, if the document already exists, the new document would replace the old.</p>
+</li>
+<li><p>Inverted index</p>
+<p>Relational databases add an <em>index</em>, such as a B-tree index, to specific columns in order to improve the speed of data retrieval. Elasticsearch and Lucene use a structure called an <em>inverted index</em> for exactly the same purpose. By default, every field in a document is <em>indexed</em> (has an inverted index) and thus is searchable. A field without an inverted index is not searchable. We discuss inverted indexes in more detail in <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/inverted-index.html" target="_blank" rel="noopener">Inverted Index</a>.</p>
+<ul>
+<li><a href="https://nlp.stanford.edu/IR-book/html/htmledition/a-first-take-at-building-an-inverted-index-1.html" target="_blank" rel="noopener">A first take at building an inverted index</a></li>
+<li><a href="http://th30z.blogspot.com/2010/10/python-inverted-index-for-dummies.html" target="_blank" rel="noopener">Th30z (Matteo Bertozzi Code): Python: Inverted Index for dummies</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Cluster-Architecture"><a href="#Cluster-Architecture" class="headerlink" title="Cluster Architecture"></a>Cluster Architecture</h3><p>  <img src="/assets/1527670820582.jpg" alt="1527670820582"></p>
+<ul>
+<li>Partitioning your documents into different containers or shards, which can bestored on a single node or on multiple nodes.</li>
+<li>Balancing these shards across the nodes in your cluster to spread the indexing andsearch load.</li>
+<li>Duplicating each shard to provide redundant copies of your data, to prevent dataloss in case of hardware failure.</li>
+<li>Routing requests from any node in the cluster to the nodes that hold the data you’reinterested in.</li>
+<li>Seamlessly integrating new nodes as your cluster grows or redistributing shards torecover from node loss.</li>
+</ul>
+<h3 id="Index-Request"><a href="#Index-Request" class="headerlink" title="Index Request"></a>Index Request</h3><p><img src="/assets/1527845763041.jpg" alt="1527845763041"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Request :</span><br><span class="line">PUT test/cities/1 &#123;</span><br><span class="line">&quot;rank&quot;: 3,</span><br><span class="line">&quot;city&quot;: &quot;Hyderabad&quot;,</span><br><span class="line">&quot;state&quot;: &quot;Telangana&quot;, &quot;population2014&quot;: 7750000, &quot;land_area&quot;: 625, &quot;location&quot;:</span><br><span class="line">&#123;</span><br><span class="line">&quot;lat&quot;: 17.37,</span><br><span class="line">&quot;lon&quot;: 78.48 &#125;,</span><br><span class="line">&quot;abbreviation&quot;: &quot;Hyd&quot; &#125;</span><br><span class="line">Response : &#123; &quot;_index&quot;: &quot;test&quot;, &quot;_type&quot;: &quot;cities&quot;, &quot;_id&quot;: &quot;1&quot;, &quot;_version&quot;: 1, &quot;created&quot;: true &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Search-Request"><a href="#Search-Request" class="headerlink" title="Search Request"></a>Search Request</h3><p><img src="/assets/1527845880572.jpg" alt="1527845880572"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Request :</span><br><span class="line">GET test/cities/1?pretty</span><br><span class="line">Response : &#123;</span><br><span class="line">&quot;_index&quot;: &quot;test&quot;, &quot;_type&quot;: &quot;cities&quot;, &quot;_id&quot;: &quot;1&quot;, &quot;_version&quot;: 1, &quot;found&quot;: true, &quot;_source&quot;: &#123;</span><br><span class="line">&quot;rank&quot;: 3,</span><br><span class="line">&quot;city&quot;: &quot;Hyderabad&quot;,</span><br><span class="line">&quot;state&quot;: &quot;Telangana&quot;, &quot;population2014&quot;: 7750000, &quot;land_area&quot;: 625, &quot;location&quot;: &#123;</span><br><span class="line">&quot;lat&quot;: 17.37,</span><br><span class="line">&quot;lon&quot;: 78.48 &#125;,</span><br><span class="line">&quot;abbreviation&quot;: &quot;Hyd&quot; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Updating-a-document"><a href="#Updating-a-document" class="headerlink" title="Updating a document"></a>Updating a document</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Request :</span><br><span class="line">PUT test/cities/1 &#123;</span><br><span class="line">&quot;rank&quot;: 3,</span><br><span class="line">&quot;city&quot;: &quot;Hyderabad&quot;,</span><br><span class="line">&quot;state&quot;: &quot;Telangana&quot;, &quot;population2013&quot;: 7023000, &quot;population2014&quot;: 7750000, &quot;land_area&quot;: 625,</span><br><span class="line">&quot;location&quot;:</span><br><span class="line">&#123;</span><br><span class="line">&quot;lat&quot;: 17.37,</span><br><span class="line">&quot;lon&quot;: 78.48 &#125;,</span><br><span class="line">&quot;abbreviation&quot;: &quot;Hyd&quot; &#125;</span><br><span class="line">Response : &#123;&quot;_index&quot;: &quot;test&quot;, &quot;_type&quot;: &quot;cities&quot;, &quot;_id&quot;: &quot;1&quot;, &quot;_version&quot;: 2, &quot;created&quot;: false&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Searching"><a href="#Searching" class="headerlink" title="Searching"></a>Searching</h3><ul>
+<li><p>Search across all indexes and all types<br><code>http://localhost:9200/_search</code></p>
+</li>
+<li><p>Search across all types in the test index.<br><code>http://localhost:9200/test/_search</code></p>
+</li>
+<li><p>Search explicitly for documents of type cities within the test index.<br><code>http://localhost:9200/test/cities/_search</code></p>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
+<li><a href="https://en.wikipedia.org/wiki/Database_index" target="_blank" rel="noopener">Database index - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Inverted_index" target="_blank" rel="noopener">Inverted index - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/B%2B_tree" target="_blank" rel="noopener">B+ tree - Wikipedia</a></li>
+<li><a href="http://blog.ulf-wendel.de/2016/aggregation-features-elasticsearch-vs-mysql-vs-mongodb/" target="_blank" rel="noopener">Aggregation features, Elasticsearch vs. MySQL (vs. MongoDB) - Ulf WendelUlf Wendel</a></li>
+<li><a href="https://github.com/mobz/ElasticSearch-head" target="_blank" rel="noopener">ElasticSearch-Head</a></li>
+<li><a href="http://www.elastic.co/guide/en/marvel/current/#_marvel_8217_s_dashboards" target="_blank" rel="noopener">Marvel</a></li>
+<li><a href="https://github.com/karmi/ElasticSearch-paramedic" target="_blank" rel="noopener">Paramedic</a></li>
+<li><a href="https://github.com/lukas-vlcek/bigdesk/" target="_blank" rel="noopener">Bigdesk</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
+          
+            <a href="/tags/ELK/" rel="tag"># ELK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/24/trell-search/" rel="next" title="trell-search">
+                <i class="fa fa-chevron-left"></i> trell-search
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="markhuyong" />
+          <p class="site-author-name" itemprop="name">markhuyong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-use"><span class="nav-number">1.</span> <span class="nav-text">How to use</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Take-it-easy"><span class="nav-number">1.1.</span> <span class="nav-text">Take it easy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#use-cases"><span class="nav-number">1.1.1.</span> <span class="nav-text">use cases</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#use-Date-Range"><span class="nav-number">1.1.2.</span> <span class="nav-text">use Date Range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#use-tags-and-message-to-search-frameLog"><span class="nav-number">1.1.3.</span> <span class="nav-text">use tags and message to search frameLog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#search-ActionLog"><span class="nav-number">1.1.4.</span> <span class="nav-text">search ActionLog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#more"><span class="nav-number">1.1.5.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Direct-access-to-the-Elasticsearch-API"><span class="nav-number">1.1.6.</span> <span class="nav-text">Direct access to the Elasticsearch API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-view"><span class="nav-number">2.</span> <span class="nav-text">How to view</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Elastic"><span class="nav-number">2.1.</span> <span class="nav-text">Why Elastic</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Distributed-amp-Scalable"><span class="nav-number">2.1.1.</span> <span class="nav-text">Distributed &amp; Scalable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Developer-Friendly"><span class="nav-number">2.1.2.</span> <span class="nav-text">Developer Friendly</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Search-amp-Analytics"><span class="nav-number">2.1.3.</span> <span class="nav-text">Search &amp; Analytics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Elastic-Stack"><span class="nav-number">2.2.</span> <span class="nav-text">The Elastic Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.3.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch-Cluster-deploy"><span class="nav-number">2.4.</span> <span class="nav-text">Elasticsearch Cluster deploy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TERMINOLOGY"><span class="nav-number">2.5.</span> <span class="nav-text">TERMINOLOGY</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-understand"><span class="nav-number">3.</span> <span class="nav-text">How to understand</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts"><span class="nav-number">3.1.</span> <span class="nav-text">Basic Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuration"><span class="nav-number">3.2.</span> <span class="nav-text">Configuration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cluster-Architecture"><span class="nav-number">3.3.</span> <span class="nav-text">Cluster Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Index-Request"><span class="nav-number">3.4.</span> <span class="nav-text">Index Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search-Request"><span class="nav-number">3.5.</span> <span class="nav-text">Search Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Updating-a-document"><span class="nav-number">3.6.</span> <span class="nav-text">Updating a document</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Searching"><span class="nav-number">3.7.</span> <span class="nav-text">Searching</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">markhuyong</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

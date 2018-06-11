@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,shell,command," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="ps (processes status) is a native Unix/Linux utility for viewing information concerning a selection of running processes on a system: it reads this information from the virtual files in /proc filesyst">
+<meta name="keywords" content="linux,shell,command">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-ps">
+<meta property="og:url" content="http://markhuyong.github.io/2018/04/19/linux-ps/index.html">
+<meta property="og:site_name" content="markhuyong&#39;s garden">
+<meta property="og:description" content="ps (processes status) is a native Unix/Linux utility for viewing information concerning a selection of running processes on a system: it reads this information from the virtual files in /proc filesyst">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-04-19T05:06:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux-ps">
+<meta name="twitter:description" content="ps (processes status) is a native Unix/Linux utility for viewing information concerning a selection of running processes on a system: it reads this information from the virtual files in /proc filesyst">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://markhuyong.github.io/2018/04/19/linux-ps/"/>
+
+
+
+
+
+  <title>linux-ps | markhuyong's garden</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">markhuyong's garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/19/linux-ps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux-ps</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T13:03:46+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>ps</strong> (<strong>processes status</strong>) is a native Unix/Linux utility for viewing information concerning a selection of running processes on a system: it reads this information from the virtual files in <a href="https://www.tecmint.com/exploring-proc-file-system-in-linux/" target="_blank" rel="noopener">/proc filesystem</a>. It is one of the important utilities for system administration specifically under process monitoring, to help you understand whats is going on a Linux system.</p>
+<p>It has numerous options for manipulating its output, however you’ll find a small number of them practically useful for daily usage.</p>
+<p>In this article, we’ll look at 30 useful examples of ps commands for monitoring active running processes on a Linux system.</p>
+<p>Note that <strong>ps</strong> produces output with a heading line, which represents the meaning of each column of information, you can find the meaning of all the labels in the <strong>ps man page</strong>.</p>
+<h3 id="List-All-Processes-in-Current-Shell"><a href="#List-All-Processes-in-Current-Shell" class="headerlink" title="List All Processes in Current Shell"></a>List All Processes in Current Shell</h3><p><strong>1.</strong> If you run <strong>ps command</strong> without any arguments, it displays processes for the current shell.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps</span><br></pre></td></tr></table></figure>
+<p>List Current Running Processes</p>
+<h3 id="Print-All-Processes-in-Different-Formats"><a href="#Print-All-Processes-in-Different-Formats" class="headerlink" title="Print All Processes in Different Formats"></a>Print All Processes in Different Formats</h3><p><strong>2.</strong> Display every active process on a Linux system in generic (Unix/Linux) format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -A</span><br><span class="line">OR</span><br><span class="line">$ ps -e</span><br></pre></td></tr></table></figure>
+<p>List Processes in Standard Format</p>
+<p><strong>3.</strong> Display all processes in <strong>BSD</strong> format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps au</span><br><span class="line">OR</span><br><span class="line">$ ps axu</span><br></pre></td></tr></table></figure>
+<p>List Processes in BSD Format</p>
+<p><strong>4.</strong> To perform a full-format listing, add the <code>-f</code> or <code>-F</code> flag.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef</span><br><span class="line">OR</span><br><span class="line">$ ps -eF</span><br></pre></td></tr></table></figure>
+<p>List Processes in Long List Format</p>
+<h3 id="Display-User-Running-Processes"><a href="#Display-User-Running-Processes" class="headerlink" title="Display User Running Processes"></a>Display User Running Processes</h3><p><strong>5.</strong> You can select all processes owned by you (runner of the <strong>ps command</strong>, root in this case), type:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -x</span><br></pre></td></tr></table></figure>
+<p><strong>6.</strong> To display a user’s processes by real user ID (<strong>RUID</strong>) or name, use the <code>-U</code> flag.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fU tecmint</span><br><span class="line">OR</span><br><span class="line">$ ps -fu 1000</span><br></pre></td></tr></table></figure>
+<p>List User Processes by ID</p>
+<p><strong>7.</strong> To select a user’s processes by effective user <strong>ID</strong> (<strong>EUID</strong>) or name, use the <code>-u</code> option.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fu tecmint</span><br><span class="line">OR</span><br><span class="line">$ ps -fu 1000</span><br></pre></td></tr></table></figure>
+<h3 id="Print-All-Processes-Running-as-Root-Real-and-Effecitve-ID"><a href="#Print-All-Processes-Running-as-Root-Real-and-Effecitve-ID" class="headerlink" title="Print All Processes Running as Root (Real and Effecitve ID)"></a>Print All Processes Running as Root (Real and Effecitve ID)</h3><p><strong>8.</strong> The command below enables you to view every process running with <strong>root</strong> user privileges (real &amp; effective ID) in user format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -U root -u root</span><br></pre></td></tr></table></figure>
+<p>Display Root User Running Processes</p>
+<h3 id="Display-Group-Processes"><a href="#Display-Group-Processes" class="headerlink" title="Display Group Processes"></a>Display Group Processes</h3><p><strong>9.</strong> If you want to list all processes owned by a certain group (real group ID (<strong>RGID</strong>) or name), type.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fG apache</span><br><span class="line">OR</span><br><span class="line">$ ps -fG 48</span><br></pre></td></tr></table></figure>
+<p>Display Group Processes</p>
+<p><strong>10.</strong> To list all processes owned by effective group name (or session), type.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fg apache</span><br></pre></td></tr></table></figure>
+<h3 id="Display-Processes-by-PID-and-PPID"><a href="#Display-Processes-by-PID-and-PPID" class="headerlink" title="Display Processes by PID and PPID"></a>Display Processes by PID and PPID</h3><p><strong>11.</strong> You can list processes by <strong>PID</strong> as follows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fp 1178</span><br></pre></td></tr></table></figure>
+<p>List Processes by PID</p>
+<p><strong>12.</strong> To select process by <strong>PPID</strong>, type.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -f --ppid 1154</span><br></pre></td></tr></table></figure>
+<p>List Process by PPID</p>
+<p><strong>13.</strong> Make selection using <strong>PID</strong> list.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fp 2226,1154,1146</span><br></pre></td></tr></table></figure>
+<p>List Processes by PIDs</p>
+<h3 id="Display-Processes-by-TTY"><a href="#Display-Processes-by-TTY" class="headerlink" title="Display Processes by TTY"></a>Display Processes by TTY</h3><p><strong>14.</strong> To select processes by <strong>tty</strong>, use the <strong>-t</strong> flag as follows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -t pst/0</span><br><span class="line">$ ps -t pst/1</span><br><span class="line">$ ps -ft tty1</span><br></pre></td></tr></table></figure>
+<p>List Processes by TTY</p>
+<h3 id="Print-Process-Tree"><a href="#Print-Process-Tree" class="headerlink" title="Print Process Tree"></a>Print Process Tree</h3><p><strong>15.</strong> A process tree shows how processes on the system are linked to each other; processes whose parents have been killed are adopted by the init (or systemd).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -e --forest</span><br></pre></td></tr></table></figure>
+<p>List Process Tree</p>
+<p><strong>16.</strong> You can also print a process tree for a given process like this.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -f --forest -C sshd</span><br><span class="line">OR</span><br><span class="line">$ ps -ef --forest | grep -v grep | grep sshd</span><br></pre></td></tr></table></figure>
+<p>List Tree View of Process</p>
+<h3 id="Print-Process-Threads"><a href="#Print-Process-Threads" class="headerlink" title="Print Process Threads"></a>Print Process Threads</h3><p><strong>17.</strong> To print all threads of a process, use the <code>-H</code> flag, this will show the <strong>LWP</strong> (<strong>light weight process</strong>) as well as <strong>NLWP</strong> (<strong>number of light weight process</strong>) columns.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -fL -C httpd</span><br></pre></td></tr></table></figure>
+<p>List Process Threads</p>
+<h3 id="Specify-Custom-Output-Format"><a href="#Specify-Custom-Output-Format" class="headerlink" title="Specify Custom Output Format"></a>Specify Custom Output Format</h3><p>Using the <strong>-o</strong> or <strong>–format</strong> options, ps allows you to build user-defined output formats as shown below.</p>
+<p><strong>18.</strong> To list all format specifiers, include the <code>L</code> flag.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps L</span><br></pre></td></tr></table></figure>
+<p><strong>19.</strong> The command below allows you to view the <strong>PID</strong>, <strong>PPID</strong>, user name and command of a process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -eo pid,ppid,user,cmd</span><br></pre></td></tr></table></figure>
+<p>List Processes with Names</p>
+<p><strong>20.</strong> Below is another example of a custom output format showing file system group, nice value, start time and elapsed time of a process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -p 1154 -o pid,ppid,fgroup,ni,lstart,etime</span><br></pre></td></tr></table></figure>
+<p>List Process ID Information</p>
+<p><strong>21.</strong> To find a <a href="https://www.tecmint.com/find-process-name-pid-number-linux/" target="_blank" rel="noopener">process name using its PID</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -p 1154 -o comm=</span><br></pre></td></tr></table></figure>
+<p>Find Process using PID</p>
+<h3 id="Display-Parent-and-Child-Processes"><a href="#Display-Parent-and-Child-Processes" class="headerlink" title="Display Parent and Child Processes"></a>Display Parent and Child Processes</h3><p><strong>22.</strong> To select a specific process by its name, use the -C flag, this will also display all its child processes.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -C sshd</span><br></pre></td></tr></table></figure>
+<p>Find Parent Child Process</p>
+<p><strong>23.</strong> Find all <strong>PIDs</strong> of all instances of a process, useful when writing scripts that need to read <strong>PIDs</strong> from a std output or file.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -C httpd -o pid=</span><br></pre></td></tr></table></figure>
+<p>Find All Process PIDs</p>
+<p><strong>24.</strong> Check execution time of a process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -eo comm,etime,user | grep httpd</span><br></pre></td></tr></table></figure>
+<p>The output below shows the HTTPD service has been running for 1 hours, 48 minutes and 17 seconds.</p>
+<p>Find Process Uptime</p>
+<h3 id="Troubleshoot-Linux-System-Performance"><a href="#Troubleshoot-Linux-System-Performance" class="headerlink" title="Troubleshoot Linux System Performance"></a>Troubleshoot Linux System Performance</h3><p>If your system isn’t working as it should be, for instance if it’s unusually slow, you can <a href="https://www.tecmint.com/linux-system-monitoring-troubleshooting-tools/" target="_blank" rel="noopener">perform some system troubleshooting</a> as follows.</p>
+<p><strong>26.</strong> Find <a href="https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/" target="_blank" rel="noopener">top running processes</a> by highest memory and CPU usage in Linux.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</span><br><span class="line">OR</span><br><span class="line">$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head</span><br></pre></td></tr></table></figure>
+<p>Find Top Running Processes</p>
+<p><strong>27.</strong> To kill an Linux <a href="https://www.tecmint.com/kill-processes-unresponsive-programs-in-ubuntu/" target="_blank" rel="noopener">processes/unresponsive applications</a> or any process that is consuming high CPU time.</p>
+<p>First, find the <strong>PID</strong> of the unresponsive process or application.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -A | grep -i stress</span><br></pre></td></tr></table></figure>
+<p>Then use the <a href="https://www.tecmint.com/how-to-kill-a-process-in-linux/" target="_blank" rel="noopener">kill command</a> to terminate it immediately.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kill -9 2583 2584</span><br></pre></td></tr></table></figure>
+<p>Find and Kill a Process</p>
+<h3 id="Print-Security-Information"><a href="#Print-Security-Information" class="headerlink" title="Print Security Information"></a>Print Security Information</h3><p><strong>28.</strong> Show security context (specifically for <strong>SELinux</strong>) like this.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -eM</span><br><span class="line">OR</span><br><span class="line">$ ps --context</span><br></pre></td></tr></table></figure>
+<p>Find SELinux Context</p>
+<p><strong>29.</strong> You can also display security information in user-defined format with this command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -eo  euser,ruser,suser,fuser,f,comm,label</span><br></pre></td></tr></table></figure>
+<p>List SELinux Context by Users</p>
+<h3 id="Perform-Real-time-Process-Monitoring-Using-Watch-Utility"><a href="#Perform-Real-time-Process-Monitoring-Using-Watch-Utility" class="headerlink" title="Perform Real-time Process Monitoring Using Watch Utility"></a>Perform Real-time Process Monitoring Using Watch Utility</h3><p><strong>30.</strong> Finally, since <strong>ps</strong> displays static information, you can employ the <a href="https://www.tecmint.com/fswatch-monitors-files-and-directory-changes-modifications-in-linux/" target="_blank" rel="noopener">watch utility</a> to perform real-time process monitoring with repetitive output, displayed after every second as in the command below (specify a custom <strong>ps command</strong> to achieve your objective).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ watch -n 1 &apos;ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head&apos;</span><br></pre></td></tr></table></figure>
+<p>Real Time Process Monitoring</p>
+<p><strong>Important</strong>: ps only shows static information, to view frequently updated output you can use tools such as <a href="https://www.tecmint.com/install-htop-linux-process-monitoring-for-rhel-centos-fedora/" target="_blank" rel="noopener">htop</a>; <a href="https://www.tecmint.com/12-top-command-examples-in-linux/" target="_blank" rel="noopener">top</a> and <a href="https://www.tecmint.com/glances-an-advanced-real-time-system-monitoring-tool-for-linux/" target="_blank" rel="noopener">glances</a>: the last two are in fact Linux system performance monitoring tool.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/command/" rel="tag"># command</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/linux-find/" rel="next" title="linux-find">
+                <i class="fa fa-chevron-left"></i> linux-find
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/linux-dmesg/" rel="prev" title="linux-dmesg">
+                linux-dmesg <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="markhuyong" />
+          <p class="site-author-name" itemprop="name">markhuyong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#List-All-Processes-in-Current-Shell"><span class="nav-number">1.</span> <span class="nav-text">List All Processes in Current Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-All-Processes-in-Different-Formats"><span class="nav-number">2.</span> <span class="nav-text">Print All Processes in Different Formats</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-User-Running-Processes"><span class="nav-number">3.</span> <span class="nav-text">Display User Running Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-All-Processes-Running-as-Root-Real-and-Effecitve-ID"><span class="nav-number">4.</span> <span class="nav-text">Print All Processes Running as Root (Real and Effecitve ID)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Group-Processes"><span class="nav-number">5.</span> <span class="nav-text">Display Group Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Processes-by-PID-and-PPID"><span class="nav-number">6.</span> <span class="nav-text">Display Processes by PID and PPID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Processes-by-TTY"><span class="nav-number">7.</span> <span class="nav-text">Display Processes by TTY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-Process-Tree"><span class="nav-number">8.</span> <span class="nav-text">Print Process Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-Process-Threads"><span class="nav-number">9.</span> <span class="nav-text">Print Process Threads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Specify-Custom-Output-Format"><span class="nav-number">10.</span> <span class="nav-text">Specify Custom Output Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Display-Parent-and-Child-Processes"><span class="nav-number">11.</span> <span class="nav-text">Display Parent and Child Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Troubleshoot-Linux-System-Performance"><span class="nav-number">12.</span> <span class="nav-text">Troubleshoot Linux System Performance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-Security-Information"><span class="nav-number">13.</span> <span class="nav-text">Print Security Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perform-Real-time-Process-Monitoring-Using-Watch-Utility"><span class="nav-number">14.</span> <span class="nav-text">Perform Real-time Process Monitoring Using Watch Utility</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">markhuyong</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,shell,command," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="The ‘dmesg‘ command displays the messages from the kernel ring buffer. A system passes multiple runlevel from where we can get lot of information like system architecture, cpu, attached device, RAM et">
+<meta name="keywords" content="linux,shell,command">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-dmesg">
+<meta property="og:url" content="http://markhuyong.github.io/2018/04/19/linux-dmesg/index.html">
+<meta property="og:site_name" content="markhuyong&#39;s garden">
+<meta property="og:description" content="The ‘dmesg‘ command displays the messages from the kernel ring buffer. A system passes multiple runlevel from where we can get lot of information like system architecture, cpu, attached device, RAM et">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-04-19T05:20:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux-dmesg">
+<meta name="twitter:description" content="The ‘dmesg‘ command displays the messages from the kernel ring buffer. A system passes multiple runlevel from where we can get lot of information like system architecture, cpu, attached device, RAM et">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://markhuyong.github.io/2018/04/19/linux-dmesg/"/>
+
+
+
+
+
+  <title>linux-dmesg | markhuyong's garden</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">markhuyong's garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://markhuyong.github.io/2018/04/19/linux-dmesg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="markhuyong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="markhuyong's garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux-dmesg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T13:19:04+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>The ‘<strong>dmesg</strong>‘ command displays the messages from the kernel ring buffer. A system passes multiple runlevel from where we can get lot of information like system architecture, cpu, attached device, RAM etc. When computer boots up, a kernel (core of an operating system) is loaded into memory. During that period number of messages are being displayed where we can see hardware devices detected by kernel.</p>
+<p>The messages are very important in terms of diagnosing purpose in case of device failure. When we connect or disconnect hardware device on the system, with the help of dmesg command we come to know detected or disconnected information on the fly. The <strong>dmesg</strong> command is available on most <strong>Linux and Unix</strong> based Operating System.</p>
+<p>Let’s throw some light on most famous tool called ‘dmesg’ command with their practical examples as discussed below. The exact syntax of dmesg as follows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># dmseg [options...]</span><br></pre></td></tr></table></figure>
+<h3 id="1-List-all-loaded-Drivers-in-Kernel"><a href="#1-List-all-loaded-Drivers-in-Kernel" class="headerlink" title="1. List all loaded Drivers in Kernel"></a>1. List all loaded Drivers in Kernel</h3><p>We can use text-manipulation tools i.e. ‘<strong>more</strong>‘, ‘<strong>tail</strong>‘, ‘<strong>less</strong>‘ or ‘<strong>grep</strong>‘ with dmesg command. As output of dmesg log won’t fit on a single page, using dmesg with pipe more or less command will display logs in a single page.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com ~]# dmesg | more</span><br><span class="line">[root@tecmint.com ~]# dmesg | less</span><br></pre></td></tr></table></figure>
+<h5 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[    0.000000] Initializing cgroup subsys cpuset</span><br><span class="line">[    0.000000] Initializing cgroup subsys cpu</span><br><span class="line">[    0.000000] Initializing cgroup subsys cpuacct</span><br><span class="line">[    0.000000] Linux version 3.11.0-13-generic (buildd@aatxe) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #20-Ubuntu SMP Wed Oct 23 17:26:33 UTC 2013 </span><br><span class="line">(Ubuntu 3.11.0-13.20-generic 3.11.6)</span><br><span class="line">[    0.000000] KERNEL supported cpus:</span><br><span class="line">[    0.000000]   Intel GenuineIntel</span><br><span class="line">[    0.000000]   AMD AuthenticAMD</span><br><span class="line">[    0.000000]   NSC Geode by NSC</span><br><span class="line">[    0.000000]   Cyrix CyrixInstead</span><br><span class="line">[    0.000000]   Centaur CentaurHauls</span><br><span class="line">[    0.000000]   Transmeta GenuineTMx86</span><br><span class="line">[    0.000000]   Transmeta TransmetaCPU</span><br><span class="line">[    0.000000]   UMC UMC UMC UMC</span><br><span class="line">[    0.000000] e820: BIOS-provided physical RAM map:</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007dc08bff] usable</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc08c00-0x000000007dc5cbff] ACPI NVS</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc5cc00-0x000000007dc5ebff] ACPI data</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc5ec00-0x000000007fffffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000e0000000-0x00000000efffffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000fec00000-0x00000000fed003ff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000fed20000-0x00000000fed9ffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000fee00000-0x00000000feefffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000ffb00000-0x00000000ffffffff] reserved</span><br><span class="line">[    0.000000] NX (Execute Disable) protection: active</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+<p><strong>Read Also</strong>: <a href="https://www.tecmint.com/view-contents-of-file-in-linux/" target="_blank" rel="noopener">Manage Linux Files Effectively using commands head, tail and cat</a></p>
+<h3 id="2-List-all-Detected-Devices"><a href="#2-List-all-Detected-Devices" class="headerlink" title="2. List all Detected Devices"></a>2. List all Detected Devices</h3><p>To discover which hard disks has been detected by kernel, you can search for the keyword “<strong>sda</strong>” along with “<strong>grep</strong>” like shown below.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com ~]# dmesg | grep sda</span><br><span class="line">[    1.280971] sd 2:0:0:0: [sda] 488281250 512-byte logical blocks: (250 GB/232 GiB)</span><br><span class="line">[    1.281014] sd 2:0:0:0: [sda] Write Protect is off</span><br><span class="line">[    1.281016] sd 2:0:0:0: [sda] Mode Sense: 00 3a 00 00</span><br><span class="line">[    1.281039] sd 2:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn&apos;t support DPO or FUA</span><br><span class="line">[    1.359585]  sda: sda1 sda2 &lt; sda5 sda6 sda7 sda8 &gt;</span><br><span class="line">[    1.360052] sd 2:0:0:0: [sda] Attached SCSI disk</span><br><span class="line">[    2.347887] EXT4-fs (sda1): mounted filesystem with ordered data mode. Opts: (null)</span><br><span class="line">[   22.928440] Adding 3905532k swap on /dev/sda6.  Priority:-1 extents:1 across:3905532k FS</span><br><span class="line">[   23.950543] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro</span><br><span class="line">[   24.134016] EXT4-fs (sda5): mounted filesystem with ordered data mode. Opts: (null)</span><br><span class="line">[   24.330762] EXT4-fs (sda7): mounted filesystem with ordered data mode. Opts: (null)</span><br><span class="line">[   24.561015] EXT4-fs (sda8): mounted filesystem with ordered data mode. Opts: (null)</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE</strong>: The ‘sda’ first SATA hard drive, ‘sdb’ is the second SATA hard drive and so on. Search with ‘hda’ or ‘hdb’ in the case of IDE hard drive.</p>
+<h3 id="3-Print-Only-First-20-Lines-of-Output"><a href="#3-Print-Only-First-20-Lines-of-Output" class="headerlink" title="3. Print Only First 20 Lines of Output"></a>3. Print Only First 20 Lines of Output</h3><p>The ‘head’ along with dmesg will show starting lines i.e. ‘dmesg | head -20’ will print only 20 lines from the starting point.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com ~]# dmesg | head  -20</span><br><span class="line">[    0.000000] Initializing cgroup subsys cpuset</span><br><span class="line">[    0.000000] Initializing cgroup subsys cpu</span><br><span class="line">[    0.000000] Initializing cgroup subsys cpuacct</span><br><span class="line">[    0.000000] Linux version 3.11.0-13-generic (buildd@aatxe) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #20-Ubuntu SMP Wed Oct 23 17:26:33 UTC 2013 (Ubuntu 3.11.0-13.20-generic 3.11.6)</span><br><span class="line">[    0.000000] KERNEL supported cpus:</span><br><span class="line">[    0.000000]   Intel GenuineIntel</span><br><span class="line">[    0.000000]   AMD AuthenticAMD</span><br><span class="line">[    0.000000]   NSC Geode by NSC</span><br><span class="line">[    0.000000]   Cyrix CyrixInstead</span><br><span class="line">[    0.000000]   Centaur CentaurHauls</span><br><span class="line">[    0.000000]   Transmeta GenuineTMx86</span><br><span class="line">[    0.000000]   Transmeta TransmetaCPU</span><br><span class="line">[    0.000000]   UMC UMC UMC UMC</span><br><span class="line">[    0.000000] e820: BIOS-provided physical RAM map:</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007dc08bff] usable</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc08c00-0x000000007dc5cbff] ACPI NVS</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc5cc00-0x000000007dc5ebff] ACPI data</span><br><span class="line">[    0.000000] BIOS-e820: [mem 0x000000007dc5ec00-0x000000007fffffff] reserved</span><br></pre></td></tr></table></figure>
+<h3 id="4-Print-Only-Last-20-Lines-of-Output"><a href="#4-Print-Only-Last-20-Lines-of-Output" class="headerlink" title="4. Print Only Last 20 Lines of Output"></a>4. Print Only Last 20 Lines of Output</h3><p>The ‘tail’ along with dmesg command will print only 20 last lines, this is useful in case we insert removable device.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com ~]# dmesg | tail -20</span><br><span class="line">parport0: PC-style at 0x378, irq 7 [PCSPP,TRISTATE]</span><br><span class="line">ppdev: user-space parallel port driver</span><br><span class="line">EXT4-fs (sda1): mounted filesystem with ordered data mode</span><br><span class="line">Adding 2097144k swap on /dev/sda2.  Priority:-1 extents:1 across:2097144k</span><br><span class="line">readahead-disable-service: delaying service auditd</span><br><span class="line">ip_tables: (C) 2000-2006 Netfilter Core Team</span><br><span class="line">nf_conntrack version 0.5.0 (16384 buckets, 65536 max)</span><br><span class="line">NET: Registered protocol family 10</span><br><span class="line">lo: Disabled Privacy Extensions</span><br><span class="line">e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None</span><br><span class="line">Slow work thread pool: Starting up</span><br><span class="line">Slow work thread pool: Ready</span><br><span class="line">FS-Cache: Loaded</span><br><span class="line">CacheFiles: Loaded</span><br><span class="line">CacheFiles: Security denies permission to nominate security context: error -95</span><br><span class="line">eth0: no IPv6 routers present</span><br><span class="line">type=1305 audit(1398268784.593:18630): audit_enabled=0 old=1 auid=4294967295 ses=4294967295 res=1</span><br><span class="line">readahead-collector: starting delayed service auditd</span><br><span class="line">readahead-collector: sorting</span><br><span class="line">readahead-collector: finished</span><br></pre></td></tr></table></figure>
+<h3 id="5-Search-Detected-Device-or-Particular-String"><a href="#5-Search-Detected-Device-or-Particular-String" class="headerlink" title="5. Search Detected Device or Particular String"></a>5. Search Detected Device or Particular String</h3><p>It’s difficult to search particular string due to length of dmesg output. So, filter the lines with are having string like ‘<strong>usb</strong>‘ ‘<strong>dma</strong>‘ ‘<strong>tty</strong>‘ and ‘<strong>memory</strong>‘ etc. The ‘-i’ option instruct to <a href="https://www.tecmint.com/12-practical-examples-of-linux-grep-command/" target="_blank" rel="noopener">grep command</a> to ignore the case (upper or lower case letters).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com log]# dmesg | grep -i usb</span><br><span class="line">[root@tecmint.com log]# dmesg | grep -i dma</span><br><span class="line">[root@tecmint.com log]# dmesg | grep -i tty</span><br><span class="line">[root@tecmint.com log]# dmesg | grep -i memory</span><br></pre></td></tr></table></figure>
+<h5 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[    0.000000] Scanning 1 areas for low memory corruption</span><br><span class="line">[    0.000000] initial memory mapped: [mem 0x00000000-0x01ffffff]</span><br><span class="line">[    0.000000] Base memory trampoline at [c009b000] 9b000 size 16384</span><br><span class="line">[    0.000000] init_memory_mapping: [mem 0x00000000-0x000fffff]</span><br><span class="line">[    0.000000] init_memory_mapping: [mem 0x37800000-0x379fffff]</span><br><span class="line">[    0.000000] init_memory_mapping: [mem 0x34000000-0x377fffff]</span><br><span class="line">[    0.000000] init_memory_mapping: [mem 0x00100000-0x33ffffff]</span><br><span class="line">[    0.000000] init_memory_mapping: [mem 0x37a00000-0x37bfdfff]</span><br><span class="line">[    0.000000] Early memory node ranges</span><br><span class="line">[    0.000000] PM: Registered nosave memory: [mem 0x0009f000-0x000effff]</span><br><span class="line">[    0.000000] PM: Registered nosave memory: [mem 0x000f0000-0x000fffff]</span><br><span class="line">[    0.000000] please try &apos;cgroup_disable=memory&apos; option if you don&apos;t want memory cgroups</span><br><span class="line">[    0.000000] Memory: 2003288K/2059928K available (6352K kernel code, 607K rwdata, 2640K rodata, 880K init, 908K bss, 56640K reserved, 1146920K highmem)</span><br><span class="line">[    0.000000] virtual kernel memory layout:</span><br><span class="line">[    0.004291] Initializing cgroup subsys memory</span><br><span class="line">[    0.004609] Freeing SMP alternatives memory: 28K (c1a3e000 - c1a45000)</span><br><span class="line">[    0.899622] Freeing initrd memory: 23616K (f51d0000 - f68e0000)</span><br><span class="line">[    0.899813] Scanning for low memory corruption every 60 seconds</span><br><span class="line">[    0.946323] agpgart-intel 0000:00:00.0: detected 32768K stolen memory</span><br><span class="line">[    1.360318] Freeing unused kernel memory: 880K (c1962000 - c1a3e000)</span><br><span class="line">[    1.429066] [drm] Memory usable by graphics device = 2048M</span><br></pre></td></tr></table></figure>
+<h3 id="6-Clear-dmesg-Buffer-Logs"><a href="#6-Clear-dmesg-Buffer-Logs" class="headerlink" title="6. Clear dmesg Buffer Logs"></a>6. Clear dmesg Buffer Logs</h3><p>Yes, we can clear dmesg logs if required with below command. It will clear dmesg ring buffer message logs till you executed the command below. Still you can view logs stored in ‘<strong>/var/log/dmesg</strong>‘ files. If you connect any device will generate dmesg output.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com log]# dmesg -c</span><br></pre></td></tr></table></figure>
+<h3 id="7-Monitoring-dmesg-in-Real-Time"><a href="#7-Monitoring-dmesg-in-Real-Time" class="headerlink" title="7. Monitoring dmesg in Real Time"></a>7. Monitoring dmesg in Real Time</h3><p>Some distro allows command ‘tail -f /var/log/dmesg’ as well for real time dmesg monitoring.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@tecmint.com log]# watch &quot;dmesg | tail -20&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Conclusion</strong>: The dmesg command is useful as dmesg records all the system changes done or occur in real time. As always you can <strong>man dmesg</strong> to get more information.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/command/" rel="tag"># command</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/linux-ps/" rel="next" title="linux-ps">
+                <i class="fa fa-chevron-left"></i> linux-ps
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/git-cheatsheet/" rel="prev" title="git-cheatsheet">
+                git-cheatsheet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="markhuyong" />
+          <p class="site-author-name" itemprop="name">markhuyong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-List-all-loaded-Drivers-in-Kernel"><span class="nav-number">1.</span> <span class="nav-text">1. List all loaded Drivers in Kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.0.1.</span> <span class="nav-text">Sample Output</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-List-all-Detected-Devices"><span class="nav-number">2.</span> <span class="nav-text">2. List all Detected Devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Print-Only-First-20-Lines-of-Output"><span class="nav-number">3.</span> <span class="nav-text">3. Print Only First 20 Lines of Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Print-Only-Last-20-Lines-of-Output"><span class="nav-number">4.</span> <span class="nav-text">4. Print Only Last 20 Lines of Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Search-Detected-Device-or-Particular-String"><span class="nav-number">5.</span> <span class="nav-text">5. Search Detected Device or Particular String</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sample-Output-1"><span class="nav-number">5.0.1.</span> <span class="nav-text">Sample Output</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Clear-dmesg-Buffer-Logs"><span class="nav-number">6.</span> <span class="nav-text">6. Clear dmesg Buffer Logs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Monitoring-dmesg-in-Real-Time"><span class="nav-number">7.</span> <span class="nav-text">7. Monitoring dmesg in Real Time</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">markhuyong</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
